@@ -1,0 +1,57 @@
+{
+  "name": "Indiase Keuken",
+  "tagline": "Indiase catering",
+  "email": "info@indiasekeuken.nl",
+  "phone": "0684875866",
+  "address": "Herderplein 13",
+  "postalCode": "",
+  "city": "Utrecht",
+  "kvk": "",
+  "vat": "",
+  "socials": [],
+  "url": "https://catering.indiasekeuken.nl",
+  "serviceArea": "Provincie Utrecht. Landelijk bij grotere opdrachten, in overleg.",
+  "navigation": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Menu",
+      "href": "/menu"
+    },
+    {
+      "label": "Over ons",
+      "href": "/over-ons"
+    },
+    {
+      "label": "B2B",
+      "href": "/b2b"
+    }
+  ],
+  "quoteLabel": "Offerte aanvragen",
+  "footer": {
+    "intro": "Indiase catering voor particulieren en bedrijven. Met aandacht bereid in Utrecht.",
+    "privacyLabel": "Privacybeleid",
+    "copyright": "Indiase Keuken",
+    "contactTitle": "Contact",
+    "areaText": "Bezorging in Utrecht en omgeving. Andere locaties in overleg."
+  },
+  "ui": {
+    "skipLink": "Direct naar de inhoud",
+    "menuOpen": "Open navigatie",
+    "menuClose": "Sluit navigatie",
+    "navigationLabel": "Hoofdnavigatie",
+    "homeLabel": "Indiase Keuken — Home",
+    "selectionLabel": "Uw selectie",
+    "illustrative": "Sfeerbeeld ter inspiratie",
+    "imageFallback": "Met aandacht bereid",
+    "demoBanner": "Voorbeeldmenu voor ontwikkeling · geen bevestigd aanbod.",
+    "backHome": "Terug naar home",
+    "notFoundTitle": "Deze pagina bestaat niet.",
+    "notFoundDescription": "Ga terug naar de homepage of ontdek ons menu.",
+    "errorTitle": "Er ging iets mis.",
+    "errorDescription": "Probeer de pagina opnieuw te laden. U kunt ons ook rechtstreeks mailen.",
+    "retryLabel": "Probeer opnieuw"
+  }
+}

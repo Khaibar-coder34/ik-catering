@@ -1,0 +1,21 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "24"
+  CATALOG_DEMO = "false"
+
+# Netlify detecteert Next.js en past zijn actuele officiële OpenNext-adapter toe.
+# Geen static export: /api/aanvragen heeft de serverruntime nodig.
+# Geheimen en contextspecifieke instellingen horen in Netlify, niet in Git.
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"

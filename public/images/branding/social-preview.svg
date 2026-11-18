@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#601e2a"/>
+  <rect x="26" y="26" width="1148" height="578" fill="none" stroke="#c5a05a" stroke-opacity=".55"/>
+  <path d="M600 78l8 18 19 8-19 8-8 19-8-19-19-8 19-8z" fill="none" stroke="#c5a05a" stroke-width="1.4"/>
+  <path d="M420 104h115m130 0h115" stroke="#c5a05a" stroke-opacity=".55"/>
+  <text x="600" y="224" text-anchor="middle" font-family="Arial, sans-serif" font-size="76" font-weight="600" fill="#faf7f0">Indiase Keuken</text>
+  <text x="600" y="283" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" letter-spacing="5" fill="#dcc799">INDIASE CATERING</text>
+  <text x="600" y="394" text-anchor="middle" font-family="Arial, sans-serif" font-size="40" fill="#faf7f0">Samen genieten van India.</text>
+  <text x="600" y="446" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" fill="#faf7f0">Voor particulieren en bedrijven.</text>
+  <path d="M560 500h80" stroke="#c5a05a"/>
+  <text x="600" y="550" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" letter-spacing="1.6" fill="#dcc799">VANUIT UTRECHT · VOLLEDIG OP MAAT</text>
+</svg>

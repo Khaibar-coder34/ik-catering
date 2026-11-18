@@ -1,0 +1,132 @@
+{
+  "home": {
+    "metaTitle": "Indiase catering in {site.city}",
+    "metaDescription": "Indiase catering voor particulieren en bedrijven in {site.city} en omgeving. Ontdek ons menu en vraag eenvoudig een vrijblijvende offerte aan.",
+    "eyebrow": "INDIASE CATERING · {site.city}",
+    "title": "Goed eten.\nSamen genieten.",
+    "description": "Van een feest thuis tot een lunch op het werk. Wij verzorgen Indiase gerechten voor uw gezelschap, vers bereid en bezorgd op locatie.",
+    "menuCta": "Bekijk het menu",
+    "note": "Voor particulieren en bedrijven",
+    "image": "/images/catering/hero.webp",
+    "imageAlt": "Een Indiase maaltijd met curry, rijst en brood",
+    "imageCaption": "Sfeerbeeld",
+    "services": [
+      {
+        "icon": "utensils",
+        "title": "Indiaas & smaakvol",
+        "text": "Gerechten om samen van te genieten."
+      },
+      {
+        "icon": "truck",
+        "title": "Bezorgd op locatie",
+        "text": "In {site.city} en omgeving."
+      },
+      {
+        "icon": "heart",
+        "title": "Persoonlijk geregeld",
+        "text": "Een voorstel dat bij uw wensen past."
+      }
+    ],
+    "bottomTitle": "U kiest het moment.\nWij verzorgen het eten.",
+    "bottomText": "Kies uw favoriete gerechten of laat ons een menu voorstellen. Buffetopstelling, warmhoudapparatuur en servies stemmen we samen af.",
+    "bottomCta": "Offerte aanvragen",
+    "b2bLink": "Samenwerken? Bekijk B2B",
+    "aboutLink": "Meer over ons"
+  },
+  "menu": {
+    "metaTitle": "Menu",
+    "metaDescription": "Bekijk de hoofdgerechten, bijgerechten en nagerechten van {site.name}. Stel uw menu samen bij het aanvragen van een offerte.",
+    "title": "Ons menu",
+    "description": "Ontdek de smaken van onze keuken.",
+    "cta": "Uw keuze maken? Dat kan bij de offerteaanvraag."
+  },
+  "about": {
+    "metaTitle": "Over ons",
+    "metaDescription": "{site.name} in {site.city}: Indiase gerechten en catering voor particulieren en bedrijven. Lees meer over ons of neem contact op.",
+    "eyebrow": "OVER {site.name}",
+    "title": "Een keuken voor iedereen.",
+    "description": "Wij zijn {site.name} uit {site.city}. We koken met aandacht voor smaak en brengen de warmte van de Indiase keuken naar uw tafel.",
+    "detail": "Een verjaardag, een familiebijeenkomst of een etentje met vrienden? Wij denken graag mee en verzorgen de gerechten op uw locatie.",
+    "image": "/images/catering/spices.webp",
+    "imageAlt": "Een masaladoos met specerijen uit de Indiase keuken",
+    "contactTitle": "Een vraag of een idee?",
+    "contactText": "Stuur ons een bericht. We helpen u graag verder."
+  },
+  "b2b": {
+    "metaTitle": "B2B — Samenwerken",
+    "metaDescription": "Een cateringpartner voor uw bedrijf, zorginstelling of organisatie? Neem contact op met {site.name} in {site.city}.",
+    "eyebrow": "B2B",
+    "title": "Een smakelijke samenwerking?",
+    "description": "Onze Indiase maaltijden zijn er voor iedereen. We denken graag mee met bedrijven, zorginstellingen en overheidsorganisaties over een duurzame samenwerking.",
+    "detail": "Bent u benieuwd wat we voor uw organisatie kunnen betekenen? Neem gerust contact met ons op.",
+    "formTitle": "Neem contact op"
+  },
+  "quote": {
+    "metaTitle": "Offerte aanvragen",
+    "metaDescription": "Vraag eenvoudig een cateringofferte aan als particulier of bedrijf. Kies eventueel gerechten, vul uw gegevens in en ontvang een persoonlijk voorstel.",
+    "title": "Offerte aanvragen",
+    "description": "Kies uw gerechten en deel uw gegevens. Uw aanvraag is vrijblijvend."
+  },
+  "contact": {
+    "title": "U kunt ons ook bereiken via",
+    "emailLabel": "E-mail",
+    "phoneLabel": "Telefoon",
+    "addressLabel": "Adres"
+  },
+  "privacy": {
+    "metaTitle": "Privacybeleid",
+    "metaDescription": "Lees hoe {site.name} persoonsgegevens gebruikt voor contact, cateringoffertes en samenwerkingsverzoeken.",
+    "eyebrow": "ZORGVULDIG MET UW GEGEVENS",
+    "title": "Privacybeleid",
+    "description": "Hoe we omgaan met uw gegevens.",
+    "sections": [
+      {
+        "title": "Wie verwerkt uw gegevens?",
+        "text": "{site.name}, {site.address} in {site.city}, is verantwoordelijk voor de verwerking van persoonsgegevens via deze website. Voor vragen kunt u mailen naar {site.email} of bellen naar {site.phone}."
+      },
+      {
+        "title": "Welke gegevens ontvangen we?",
+        "text": "Bij een offerte ontvangen we uw naam, e-mailadres, telefoonnummer, de bezorgplaats, datum, groepsgrootte, servieskeuze en eventuele gerechtselectie. Bij een contactbericht ontvangen we uw naam, e-mailadres, telefoonnummer en bericht. Deel alleen gegevens die nodig zijn voor uw aanvraag."
+      },
+      {
+        "title": "Waarvoor gebruiken we uw gegevens?",
+        "text": "We gebruiken uw gegevens om vragen te beantwoorden, een offerte voor te bereiden of een samenwerking te bespreken. Dit gebeurt om op uw verzoek stappen te nemen vóór een overeenkomst, of vanuit ons gerechtvaardigd belang om contactverzoeken te beantwoorden en misbruik te voorkomen. Het privacyvakje bij de offerte is geen toestemming voor marketing."
+      },
+      {
+        "title": "Hoe ontvangen en bewaren we aanvragen?",
+        "text": "Aanvragen worden per e-mail verzonden via Resend. We slaan de formulieren niet op in een website-database, lokale JSON-bestanden of GitHub. De e-mailcorrespondentie is ons kanaal voor opvolging. We bewaren correspondentie zolang dat nodig is voor de aanvraag, eventuele afspraken en toepasselijke wettelijke verplichtingen. Periodiek beoordelen we welke gegevens verwijderd kunnen worden."
+      },
+      {
+        "title": "Welke dienstverleners gebruiken we?",
+        "text": "Netlify verzorgt de hosting en Resend de verzending van e-mails. Wanneer de spambeveiliging is ingeschakeld, controleert Cloudflare Turnstile formulierverzendingen; daarbij kunnen technische gegevens zoals IP-adres en browserkenmerken worden verwerkt. Deze dienstverleners kunnen gegevens buiten de Europese Economische Ruimte verwerken. Controleer hun actuele privacyvoorwaarden en toepasselijke doorgiftewaarborgen via de links hieronder."
+      },
+      {
+        "title": "Cookies en uw gerechtselectie",
+        "text": "Deze website gebruikt geen advertentietrackers of analytische trackingcookies. Uw gerechtselectie wordt tijdelijk in sessionStorage in uw eigen browsertab bewaard, zodat deze bij het navigeren behouden blijft. We gebruiken deze selectie uitsluitend voor de offertefunctie. Technische beveiligings- en hostinggegevens kunnen nodig zijn om de website veilig te laten werken."
+      },
+      {
+        "title": "Uw rechten",
+        "text": "U kunt vragen om inzage, correctie of verwijdering van uw persoonsgegevens. Afhankelijk van de situatie kunt u ook bezwaar maken, beperking van de verwerking vragen of gegevensoverdraagbaarheid verzoeken. Mail hiervoor naar {site.email}. U kunt daarnaast een klacht indienen bij de Autoriteit Persoonsgegevens."
+      }
+    ],
+    "linksTitle": "Meer informatie",
+    "links": [
+      {
+        "label": "Privacy bij Netlify",
+        "href": "https://www.netlify.com/privacy/"
+      },
+      {
+        "label": "Privacy bij Resend",
+        "href": "https://resend.com/legal/privacy-policy"
+      },
+      {
+        "label": "Privacy bij Cloudflare",
+        "href": "https://www.cloudflare.com/privacypolicy/"
+      },
+      {
+        "label": "Autoriteit Persoonsgegevens",
+        "href": "https://www.autoriteitpersoonsgegevens.nl/"
+      }
+    ]
+  }
+}

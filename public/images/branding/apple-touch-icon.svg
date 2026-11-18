@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+  <rect width="180" height="180" rx="36" fill="#601e2a"/>
+  <rect x="12" y="12" width="156" height="156" rx="27" fill="none" stroke="#c5a05a" stroke-opacity=".65"/>
+  <path d="M90 30l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" fill="none" stroke="#c5a05a"/>
+  <text x="90" y="123" text-anchor="middle" font-family="Georgia, serif" font-size="69" fill="#faf7f0">IK</text>
+  <path d="M65 142h50" stroke="#c5a05a"/>
+</svg>

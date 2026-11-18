@@ -1,0 +1,5 @@
+[
+  { "id": "hoofdgerechten", "slug": "hoofdgerechten", "name": "Hoofdgerechten", "description": "Warme gerechten om samen van te genieten.", "sortOrder": 1, "isPublished": true },
+  { "id": "bijgerechten", "slug": "bijgerechten", "name": "Bijgerechten", "description": "Een smaakvolle aanvulling op uw menu.", "sortOrder": 2, "isPublished": true },
+  { "id": "nagerechten", "slug": "nagerechten", "name": "Nagerechten", "description": "Een mooie afsluiting van uw maaltijd.", "sortOrder": 3, "isPublished": true }
+]

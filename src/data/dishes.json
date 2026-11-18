@@ -1,0 +1,101 @@
+[
+  {
+    "id": "butter-chicken",
+    "slug": "butter-chicken",
+    "name": "Butter chicken",
+    "categoryId": "hoofdgerechten",
+    "description": "Malse kip in een romige tomatensaus met warme specerijen.",
+    "image": "/images/dishes/butter-chicken.webp",
+    "type": "meat",
+    "sortOrder": 1,
+    "isPublished": true
+  },
+  {
+    "id": "palak-paneer",
+    "slug": "palak-paneer",
+    "name": "Palak paneer",
+    "categoryId": "hoofdgerechten",
+    "description": "Indiase kaas in een zachte spinaziesaus met aromatische kruiden.",
+    "image": "/images/dishes/palak-paneer.webp",
+    "type": "vegetarian",
+    "sortOrder": 2,
+    "isPublished": true
+  },
+  {
+    "id": "chana-masala",
+    "slug": "chana-masala",
+    "name": "Chana masala",
+    "categoryId": "hoofdgerechten",
+    "description": "Kikkererwten in een kruidige saus van tomaat en ui.",
+    "image": "/images/dishes/chana-masala.webp",
+    "type": "vegan",
+    "sortOrder": 3,
+    "isPublished": true
+  },
+  {
+    "id": "basmati",
+    "slug": "basmati",
+    "name": "Basmatirijst",
+    "categoryId": "bijgerechten",
+    "description": "Luchtige, langkorrelige rijst voor bij uw favoriete curry.",
+    "image": "/images/dishes/basmati.webp",
+    "type": "vegan",
+    "sortOrder": 1,
+    "isPublished": true
+  },
+  {
+    "id": "naan",
+    "slug": "naan",
+    "name": "Naan",
+    "categoryId": "bijgerechten",
+    "description": "Zacht Indiaas platbrood, heerlijk om in een curry te dippen.",
+    "image": "/images/dishes/naan.webp",
+    "type": "vegetarian",
+    "sortOrder": 2,
+    "isPublished": true
+  },
+  {
+    "id": "samosa",
+    "slug": "samosa",
+    "name": "Samosa",
+    "categoryId": "bijgerechten",
+    "description": "Krokante deeghapjes gevuld met aardappel, doperwten en specerijen.",
+    "image": "/images/dishes/samosa.webp",
+    "type": "vegan",
+    "sortOrder": 3,
+    "isPublished": true
+  },
+  {
+    "id": "kheer",
+    "slug": "kheer",
+    "name": "Kheer",
+    "categoryId": "nagerechten",
+    "description": "Romige Indiase rijstpudding met een vleugje kardemom.",
+    "image": "/images/dishes/kheer.webp",
+    "type": "vegetarian",
+    "sortOrder": 1,
+    "isPublished": true
+  },
+  {
+    "id": "gulab-jamun",
+    "slug": "gulab-jamun",
+    "name": "Gulab jamun",
+    "categoryId": "nagerechten",
+    "description": "Zachte, goudbruine deegbolletjes in geurige suikersiroop.",
+    "image": "/images/dishes/gulab-jamun.webp",
+    "type": "vegetarian",
+    "sortOrder": 2,
+    "isPublished": true
+  },
+  {
+    "id": "mango-kulfi",
+    "slug": "mango-kulfi",
+    "name": "Mango kulfi",
+    "categoryId": "nagerechten",
+    "description": "Romig Indiaas ijs met de fruitige smaak van mango.",
+    "image": "/images/dishes/mango-kulfi.webp",
+    "type": "vegetarian",
+    "sortOrder": 3,
+    "isPublished": true
+  }
+]
