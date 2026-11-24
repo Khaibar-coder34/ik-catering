@@ -2,10 +2,19 @@
 
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, LoaderCircle } from "lucide-react";
-import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore, type FormEvent } from "react";
 import { requestSchema, validationErrors, type Audience } from "@/src/lib/validation";
 import { Turnstile } from "@/src/components/forms/turnstile";
 import { formsContent as copy } from "@/src/lib/content";
+import { cateringSettings, earliestCateringDate } from "@/src/lib/catering-settings";
+
+function subscribeToCalendarDay(onChange: () => void) {
+  const timer = window.setInterval(onChange, 60_000);
+  window.addEventListener("focus", onChange);
+  return () => { window.clearInterval(timer); window.removeEventListener("focus", onChange); };
+}
+const getMinimumDate = () => earliestCateringDate();
+const getServerMinimumDate = () => "";
 
 type RequestFormProps =
   | { kind: "contact"; audience: Audience }
@@ -15,6 +24,7 @@ interface FormResponse { ok: boolean; reference?: string; confirmationSent?: boo
 
 export function RequestForm(props: RequestFormProps) {
   const { kind } = props;
+  const minimumDate = useSyncExternalStore(subscribeToCalendarDay, getMinimumDate, getServerMinimumDate);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState("");
   const [pending, setPending] = useState(false);
@@ -34,12 +44,15 @@ export function RequestForm(props: RequestFormProps) {
   useEffect(() => { startedAt.current = Date.now(); }, []);
   useEffect(() => { if (success) successRef.current?.focus(); }, [success]);
 
-  function field(name: FieldName, options: { type?: string; autocomplete?: string; full?: boolean; min?: string; max?: string; maxLength?: number } = {}) {
+  function field(name: FieldName, options: { type?: string; autocomplete?: string; full?: boolean; min?: string; maxLength?: number; hint?: string } = {}) {
     const errorId = `${idFor(name)}-error`;
-    const shared = { id: idFor(name), name, required: true, "aria-invalid": errors[name] ? true as const : undefined, "aria-describedby": errors[name] ? errorId : undefined };
+    const hintId = `${idFor(name)}-hint`;
+    const describedBy = [errors[name] ? errorId : "", options.hint ? hintId : ""].filter(Boolean).join(" ") || undefined;
+    const shared = { id: idFor(name), name, required: true, "aria-invalid": errors[name] ? true as const : undefined, "aria-describedby": describedBy };
     return <div className={`field${options.full ? " field-full" : ""}`} key={name}>
       <label htmlFor={idFor(name)}>{copy.fields[name]}<span aria-hidden="true"> *</span></label>
-      {options.type === "textarea" ? <textarea {...shared} rows={5} maxLength={4000} /> : <input {...shared} type={options.type ?? "text"} autoComplete={options.autocomplete} min={options.min} max={options.max} maxLength={options.maxLength ?? 100} />}
+      {options.type === "textarea" ? <textarea {...shared} rows={5} maxLength={4000} /> : <input {...shared} type={options.type ?? "text"} autoComplete={options.autocomplete} min={options.min} maxLength={options.maxLength ?? 100} />}
+      {options.hint && <p className="field-hint" id={hintId}>{options.hint}</p>}
       {errors[name] && <p className="field-error" id={errorId}>{errors[name]}</p>}
     </div>;
   }
@@ -116,9 +129,9 @@ export function RequestForm(props: RequestFormProps) {
         {field("phone", { type: "tel", autocomplete: "tel", maxLength: 40 })}
         {kind === "quote" ? <>
           {field("city", { autocomplete: "address-level2" })}
-          {field("people", { type: "number", min: "1", max: "100000" })}
-          {field("date", { type: "date" })}
-        </> : field("message", { type: "textarea", full: true })}
+          {field("people", { type: "number", min: String(cateringSettings.minPeople), hint: copy.minimumPeopleHint.replace("{minPeople}", String(cateringSettings.minPeople)) })}
+          {field("date", { type: "date", min: minimumDate || undefined, hint: copy.leadDaysHint.replace("{leadDays}", String(cateringSettings.leadDays)) })}
+        </> : field("message", { type: "textarea", full: true, hint: copy.messageHint })}
       </div>
       {kind === "quote" && <fieldset className="radio-group tableware-options" aria-describedby={errors.tableware ? `${idFor("tableware")}-error` : undefined}>
         <legend>{copy.fields.tableware}<span aria-hidden="true"> *</span></legend>

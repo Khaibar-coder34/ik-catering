@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { requestSchema, todayInAmsterdam } from "../src/lib/validation";
+import { createRequestSchema, requestSchema, todayInAmsterdam } from "../src/lib/validation";
+import { cateringSettings, earliestCateringDate } from "../src/lib/catering-settings";
 import { createRequestHandler } from "../src/lib/server/request-handler";
 import { createSubmissionService, SubmissionError, type MailMessage } from "../src/lib/server/submission-service";
 import { checkOrigin, checkSecurityConfiguration, createRateLimiter, MAX_REQUEST_BYTES, readBoundedJson, RequestBoundaryError, verifyTurnstile } from "../src/lib/server/form-security";
@@ -38,10 +39,14 @@ test("offerte zonder gerechten is geldig", () => {
   assert.equal(result.success, true);
 });
 
-test("aantal personen is verplicht en moet een positief geheel getal zijn", () => {
-  for (const people of [undefined, 0, -1, 1.5, "25"]) {
+test("aantal personen is verplicht, geheel en minimaal de ingestelde groepsgrootte", () => {
+  for (const people of [undefined, 0, -1, 1.5, "25", cateringSettings.minPeople - 1]) {
     assert.equal(requestSchema.safeParse({ ...quote, people }).success, false);
   }
+  assert.equal(requestSchema.safeParse({ ...quote, people: cateringSettings.minPeople }).success, true);
+  assert.equal(requestSchema.safeParse({ ...quote, people: 100001 }).success, true);
+  assert.equal(requestSchema.safeParse({ ...quote, people: Infinity }).success, false);
+  assert.equal(requestSchema.safeParse({ ...quote, people: Number.MAX_SAFE_INTEGER + 1 }).success, false);
 });
 
 test("datum is verplicht; ontbrekende en ongeldige kalenderdatum worden afgewezen", () => {
@@ -64,6 +69,24 @@ test("offerte bevat uitsluitend de vereenvoudigde velden", () => {
 
 test("daggrens voor datumvalidatie gebruikt Amsterdam", () => {
   assert.equal(todayInAmsterdam(new Date("2026-11-15T23:30:00Z")), "2026-11-16");
+});
+
+test("voorbereidingstijd volgt Amsterdam-kalenderdagen, ook bij zomertijd en jaarwisseling", () => {
+  assert.equal(earliestCateringDate(new Date("2026-11-15T23:30:00Z")), "2026-11-18");
+  assert.equal(earliestCateringDate(new Date("2026-03-28T12:00:00Z")), "2026-03-30");
+  assert.equal(earliestCateringDate(new Date("2026-10-24T12:00:00Z")), "2026-10-26");
+  assert.equal(earliestCateringDate(new Date("2026-12-31T23:30:00Z")), "2027-01-03");
+  const schema = createRequestSchema(() => new Date("2026-11-15T23:30:00Z"));
+  for (const date of ["2026-11-16", "2026-11-17"]) assert.equal(schema.safeParse({ ...quote, date }).success, false);
+  assert.equal(schema.safeParse({ ...quote, date: "2026-11-18" }).success, true);
+});
+
+test("server weigert aanvragen te kort vooraf voordat e-mail wordt verstuurd", async () => {
+  let sent = 0;
+  const response = await handler({ submit: async () => { sent++; return { reference, confirmationSent: true }; } })(makeRequest({ ...quote, date: "2026-11-16" }));
+  assert.equal(response.status, 422);
+  assert.ok((await response.json()).fieldErrors.date);
+  assert.equal(sent, 0);
 });
 
 test("ongeldig e-mailadres, ontbrekende privacytoestemming en onbekende velden worden afgewezen", () => {
@@ -275,6 +298,22 @@ test("contact heeft vier verplichte invoervelden, geen privacycheckbox of onjuis
   assert.doesNotMatch(emails.internal.text, /Privacyverklaring: Akkoord/);
   assert.doesNotMatch(emails.confirmation.text, /Privacyverklaring: Akkoord/);
   assert.equal(requestSchema.safeParse({ ...contact, privacy: true }).success, false);
+});
+
+test("offerte, particulier contact en zakelijk contact krijgen passende aparte bevestigingen", () => {
+  const quoteEmail = buildRequestEmails(requestSchema.parse(quote), { dishNames: ["Naan"] }, reference).confirmation;
+  const privateEmail = buildRequestEmails(requestSchema.parse(contact), emptyMenu, reference).confirmation;
+  const businessEmail = buildRequestEmails(requestSchema.parse({ ...contact, audience: "business" }), emptyMenu, reference).confirmation;
+  assert.equal(new Set([quoteEmail.subject, privateEmail.subject, businessEmail.subject]).size, 3);
+  assert.match(quoteEmail.text, /offerteaanvraag/);
+  assert.match(quoteEmail.text, /geen definitieve bestelling/);
+  assert.match(quoteEmail.text, /Naan/);
+  assert.match(privateEmail.text, /Bedankt voor je bericht/);
+  assert.match(businessEmail.text, /zakelijke catering/);
+  for (const email of [privateEmail, businessEmail]) {
+    assert.match(email.text, /Een testbericht/);
+    assert.doesNotMatch(email.text, /Geselecteerde gerechten|geen definitieve bestelling|Kennisgenomen van het privacybeleid/);
+  }
 });
 
 test("oude kennismakings- en samenwerkingsvarianten en een ontbrekend aanvraagtype worden geweigerd", () => {

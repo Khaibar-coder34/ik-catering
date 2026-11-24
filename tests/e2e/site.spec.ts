@@ -5,6 +5,8 @@ import { content, formsContent as formCopy } from "../../src/lib/content";
 import menuCopy from "../../src/data/menu-content.json";
 import publishedDishes from "../../src/data/dishes.json";
 import demoDishes from "../../src/data/demo/dishes.json";
+import labelCopy from "../../src/data/dish-labels.json";
+import { cateringSettings, earliestCateringDate, todayInAmsterdam } from "../../src/lib/catering-settings";
 
 const paths = ["/", "/menu", "/over-ons", "/b2b", "/offerte", "/privacy"];
 const categories = ["Hoofdgerechten", "Bijgerechten", "Nagerechten"];
@@ -77,8 +79,12 @@ for (const path of paths) {
   });
 }
 
-test("hoofdnavigatie bevat vier pagina's en werkt", async ({ page }) => {
+test("hoofdnavigatie bevat vier pagina's en werkt", async ({ page }, testInfo) => {
   await page.goto("/");
+  const logo = page.locator("header .brand-logo");
+  await expect.poll(() => logo.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+  await expect(page.locator("header .brand")).toHaveAccessibleName(site.ui.homeLabel);
+  await page.screenshot({ path: testInfo.outputPath("home-desktop.png") });
   const navigation = page.locator(".desktop-nav");
   await expect(navigation.getByRole("link")).toHaveText(["Home", "Menu", "Over ons", "B2B"]);
   const hrefs = await page.locator('header a[href^="/"], footer a[href^="/"]').evaluateAll((links) => [...new Set(links.map((link) => link.getAttribute("href")!.split("#")[0]))]);
@@ -100,12 +106,14 @@ for (const [from, to] of [["/menukaart", "/menu"], ["/arrangementen", "/menu"], 
 test("B2B toont de bevestigde contactgegevens", async ({ page }) => {
   await page.goto("/b2b");
   const contact = page.locator("main .contact-details");
-  await expect(contact.getByText("Herderplein 13, Utrecht", { exact: true })).toBeVisible();
-  await expect(contact.getByRole("link", { name: "0684875866" })).toHaveAttribute("href", "tel:0684875866");
+  await expect(contact.getByText(`${site.address}, ${site.postalCode ? `${site.postalCode} ` : ""}${site.city}`, { exact: true })).toBeVisible();
+  await expect(contact.getByRole("link", { name: site.phone })).toHaveAttribute("href", `tel:${site.phone}`);
   await expect(contact.getByRole("link", { name: site.email })).toHaveAttribute("href", `mailto:${site.email}`);
+  await expect(contact.getByRole("link", { name: content.contact.whatsappLabel })).toHaveAttribute("href", "https://wa.me/31624845749");
+  await expect(contact.getByText(content.contact.visitNote, { exact: true })).toBeVisible();
 });
 
-test("het menu toont drie categorieën en uitsluitend foto, naam en beschrijving per kaart", async ({ page }) => {
+test("het menu toont drie categorieën en foto, naam, labels en beschrijving per kaart", async ({ page }) => {
   await page.goto("/menu");
   await expect(page.locator(".menu-category h2")).toHaveText(categories);
   await expect(page.getByRole("searchbox")).toHaveCount(0);
@@ -117,34 +125,62 @@ test("het menu toont drie categorieën en uitsluitend foto, naam en beschrijving
     await expect(card.locator(":scope > *")).toHaveCount(3);
     await expect(card.getByRole("heading", { level: 3 })).toBeVisible();
     await expect(card.locator(".product-description p")).toBeVisible();
-    await expect(card.locator("button, input, a, .diet-label")).toHaveCount(0);
+    await expect(card.locator("button, input, a")).toHaveCount(0);
     const name = await card.getByRole("heading", { level: 3 }).textContent();
-    if (expectedDishes.find((dish) => dish.name === name)?.image) {
+    const dish = expectedDishes.find((dish) => dish.name === name)!;
+    await expect(card.locator(".dish-label").first()).toHaveText(labelCopy.types[dish.type as keyof typeof labelCopy.types]);
+    if (dish.image) {
       await card.scrollIntoViewIfNeeded();
       await expect(card.locator(".product-photo img")).toBeVisible();
       await expect.poll(() => card.locator(".product-photo img").evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
       await expect(card.locator(".image-fallback")).toHaveCount(0);
     }
-    const geometry = await card.evaluate((element) => {
-      const children = Array.from(element.children).map((child) => ({ height: child.getBoundingClientRect().height, client: child.clientHeight, scroll: child.scrollHeight }));
-      const total = children.reduce((sum, child) => sum + child.height, 0);
-      return { ratios: children.map((child) => child.height / total), unclipped: children.every((child) => child.scroll <= child.client + 1) };
-    });
-    expect(geometry.ratios[0]).toBeCloseTo(0.6, 2);
-    expect(geometry.ratios[1]).toBeCloseTo(0.2, 2);
-    expect(geometry.ratios[2]).toBeCloseTo(0.2, 2);
-    expect(geometry.unclipped).toBe(true);
+  }
+  for (const width of [320, 768, 1280]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const card of await cards.all()) {
+      const geometry = await card.evaluate((element) => {
+        const sections = Array.from(element.children);
+        const heights = sections.map((section) => section.getBoundingClientRect().height);
+        const total = heights.reduce((sum, height) => sum + height, 0);
+        const unclipped = sections.every((section) => {
+          const bounds = section.getBoundingClientRect();
+          return section.scrollHeight <= section.clientHeight + 1
+            && section.scrollWidth <= section.clientWidth + 1
+            && Array.from(section.querySelectorAll("*")).every((descendant) => {
+              const rect = descendant.getBoundingClientRect();
+              return rect.top >= bounds.top - 1 && rect.bottom <= bounds.bottom + 1
+                && rect.left >= bounds.left - 1 && rect.right <= bounds.right + 1;
+            });
+        });
+        return { name: element.getAttribute("aria-labelledby"), ratios: heights.map((height) => height / total), unclipped };
+      });
+      const context = `${geometry.name} bij ${width}px`;
+      expect(geometry.ratios[0], context).toBeCloseTo(0.6, 2);
+      expect(geometry.ratios[1], context).toBeCloseTo(0.2, 2);
+      expect(geometry.ratios[2], context).toBeCloseTo(0.2, 2);
+      expect(geometry.unclipped, context).toBe(true);
+    }
   }
 });
 
 test("offerte begint met compacte selectie en kan zonder gerechten verder", async ({ page }) => {
   await page.goto("/offerte");
+  await page.locator(".quote-conditions summary").click();
+  await expect(page.locator(".quote-conditions")).toContainText("de helft van de betaalde aanbetaling");
+  await page.locator(".quote-conditions summary").click();
   await expect(page.getByRole("heading", { name: formCopy.menuStep, exact: true })).toBeVisible();
   await expect(page.getByRole("textbox")).toHaveCount(0);
   await expect(page.locator(".compact-category legend")).toHaveText(categories);
   await expect(page.locator(".compact-dish")).toHaveCount(expectedDishes.length);
   await expect(page.locator(".compact-dish p, .compact-dish .product-description")).toHaveCount(0);
+  const veganChoice = page.getByRole("checkbox", { name: "Chana masala", exact: true });
+  await expect(veganChoice).toHaveAccessibleDescription(labelCopy.types.vegan);
+  await expect(page.locator(".compact-dish").filter({ has: veganChoice }).locator(".dish-label").first()).toHaveText(labelCopy.types.vegan);
   const form = await nextStep(page);
+  await expect(form.getByLabel(formCopy.fields.people)).toHaveAttribute("min", String(cateringSettings.minPeople));
+  await expect(form.getByLabel(formCopy.fields.people)).not.toHaveAttribute("max");
+  await expect(form.getByLabel(formCopy.fields.date)).toHaveAttribute("min", earliestCateringDate());
   await expect(form.getByRole("radio", { name: formCopy.audiences.private, exact: true })).toBeChecked();
   await expect(form.getByRole("radio", { name: formCopy.audiences.business, exact: true })).not.toBeChecked();
   await expect(page.getByText(formCopy.emptySummary, { exact: true }).last()).toBeVisible();
@@ -205,6 +241,13 @@ test("aantal personen, datum en servieskeuze zijn verplicht", async ({ page }) =
   await expect(form.locator('input[name*="budget" i], select[name*="budget" i], textarea[name*="budget" i]')).toHaveCount(0);
   const names = await form.locator('input:not([type="radio"]):not([type="checkbox"])').evaluateAll((inputs) => inputs.map((input) => input.getAttribute("name")).filter((name) => name !== "website"));
   expect(names).toEqual(["name", "email", "phone", "city", "people", "date"]);
+  await form.getByLabel(formCopy.fields.people).fill(String(cateringSettings.minPeople - 1));
+  await form.getByLabel(formCopy.fields.date).fill(todayInAmsterdam());
+  await form.getByRole("radio", { name: "Nee", exact: true }).check();
+  await form.getByRole("button", { name: formCopy.submit, exact: true }).click();
+  await expect(form.getByText(formCopy.validation.minimumPeople.replace("{minPeople}", String(cateringSettings.minPeople)), { exact: true })).toBeVisible();
+  await expect(form.getByText(formCopy.validation.leadDays.replace("{leadDays}", String(cateringSettings.leadDays)), { exact: true })).toBeVisible();
+  expect(requests).toBe(0);
 });
 
 for (const scenario of [{ audience: "private", dishes: [] }, { audience: "business", dishes: ["Naan", "Kheer"] }] as const) {
@@ -288,9 +331,11 @@ for (const scenario of [{ path: "/over-ons", audience: "private", prefix: "conta
   });
 }
 
-test("mobiele navigatie werkt en pagina's passen op smalle schermen", async ({ page }) => {
+test("mobiele navigatie werkt en pagina's passen op smalle schermen", async ({ page }, testInfo) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
+  await expect.poll(() => page.locator("header .brand-logo").evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+  await page.screenshot({ path: testInfo.outputPath("home-mobile.png") });
   await page.getByRole("button", { name: site.ui.menuOpen, exact: true }).click();
   await expect(page.getByRole("button", { name: site.ui.menuClose, exact: true })).toHaveAttribute("aria-expanded", "true");
   await page.keyboard.press("Escape");

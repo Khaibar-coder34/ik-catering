@@ -1,127 +1,160 @@
 {
   "home": {
     "metaTitle": "Indiase catering in {site.city}",
-    "metaDescription": "Indiase catering voor particulieren en bedrijven in {site.city} en omgeving. Ontdek ons menu en vraag eenvoudig een vrijblijvende offerte aan.",
+    "metaDescription": "Indiase catering voor particulieren en bedrijven in {site.city}. Authentieke smaken, warm bezorgd en verzorgd op jouw locatie. Vraag een vrijblijvende offerte aan.",
     "eyebrow": "INDIASE CATERING · {site.city}",
     "title": "Goed eten.\nSamen genieten.",
-    "description": "Van een feest thuis tot een lunch op het werk. Wij verzorgen Indiase gerechten voor uw gezelschap, vers bereid en bezorgd op locatie.",
+    "description": "Van een feest thuis tot een lunch op het werk. Wij verzorgen authentieke Indiase gerechten voor jouw gezelschap, warm bezorgd en op locatie opgesteld.",
     "menuCta": "Bekijk het menu",
-    "note": "Voor particulieren en bedrijven",
+    "note": "Vanaf {catering.minPeople} personen · Minimaal {catering.leadDays} dagen vooraf aanvragen",
     "image": "/images/catering/hero.webp",
     "imageAlt": "Een Indiase maaltijd met curry, rijst en brood",
     "imageCaption": "Sfeerbeeld",
     "services": [
       {
         "icon": "utensils",
-        "title": "Indiaas & smaakvol",
-        "text": "Gerechten om samen van te genieten."
+        "title": "Authentieke smaken",
+        "text": "De vertrouwde smaak van thuis."
       },
       {
         "icon": "truck",
-        "title": "Bezorgd op locatie",
-        "text": "In {site.city} en omgeving."
+        "title": "Warm op locatie",
+        "text": "Bezorgd en professioneel opgesteld."
       },
       {
         "icon": "heart",
         "title": "Persoonlijk geregeld",
-        "text": "Een voorstel dat bij uw wensen past."
+        "text": "Een voorstel dat bij jouw wensen past."
       }
     ],
-    "bottomTitle": "U kiest het moment.\nWij verzorgen het eten.",
-    "bottomText": "Kies uw favoriete gerechten of laat ons een menu voorstellen. Buffetopstelling, warmhoudapparatuur en servies stemmen we samen af.",
+    "bottomTitle": "Jij kiest het moment.\nWij verzorgen het eten.",
+    "bottomText": "Kies je favoriete gerechten of laat ons meedenken. We verzorgen de buffetopstelling en warmhoudapparatuur. Borden en bestek zijn tegen meerprijs beschikbaar; ophalen en eventuele aanwezigheid van personeel stemmen we samen af.",
     "bottomCta": "Offerte aanvragen",
     "b2bLink": "Samenwerken? Bekijk B2B",
     "aboutLink": "Meer over ons"
   },
   "menu": {
     "metaTitle": "Menu",
-    "metaDescription": "Bekijk de hoofdgerechten, bijgerechten en nagerechten van {site.name}. Stel uw menu samen bij het aanvragen van een offerte.",
+    "metaDescription": "Bekijk de hoofdgerechten, bijgerechten en nagerechten van {site.name}. Stel je menu samen bij het aanvragen van een offerte.",
     "title": "Ons menu",
     "description": "Ontdek de smaken van onze keuken.",
-    "cta": "Uw keuze maken? Dat kan bij de offerteaanvraag."
+    "cta": "Je keuze maken? Dat kan bij de offerteaanvraag."
   },
   "about": {
     "metaTitle": "Over ons",
     "metaDescription": "{site.name} in {site.city}: Indiase gerechten en catering voor particulieren en bedrijven. Lees meer over ons of neem contact op.",
     "eyebrow": "OVER {site.name}",
     "title": "Een keuken voor iedereen.",
-    "description": "Wij zijn {site.name} uit {site.city}. We koken met aandacht voor smaak en brengen de warmte van de Indiase keuken naar uw tafel.",
-    "detail": "Een verjaardag, een familiebijeenkomst of een etentje met vrienden? Wij denken graag mee en verzorgen de gerechten op uw locatie.",
+    "description": "{site.name} is de cateringafdeling van Indiase Keuken. In {site.foundedYear} begon het met een hobby: thuis koken voor de buren. Hun enthousiasme liet ons groeien. Die liefde voor koken proef je nog steeds in onze authentieke Indiase gerechten.",
+    "detail": "Van een verjaardag tot een bijeenkomst op het werk: we koken met aandacht voor jouw gezelschap. Vanuit {site.city} brengen we onze gerechten warm naar je toe. Grotere opdrachten buiten {site.city} bespreken we graag.",
     "image": "/images/catering/spices.webp",
     "imageAlt": "Een masaladoos met specerijen uit de Indiase keuken",
     "contactTitle": "Een vraag of een idee?",
-    "contactText": "Stuur ons een bericht. We helpen u graag verder."
+    "contactText": "Stuur ons een bericht. We helpen je graag verder."
   },
   "b2b": {
     "metaTitle": "B2B — Samenwerken",
-    "metaDescription": "Een cateringpartner voor uw bedrijf, zorginstelling of organisatie? Neem contact op met {site.name} in {site.city}.",
+    "metaDescription": "Een cateringpartner voor je bedrijf, zorginstelling of organisatie? Neem contact op met {site.name} in {site.city}.",
     "eyebrow": "B2B",
     "title": "Een smakelijke samenwerking?",
-    "description": "Onze Indiase maaltijden zijn er voor iedereen. We denken graag mee met bedrijven, zorginstellingen en overheidsorganisaties over een duurzame samenwerking.",
-    "detail": "Bent u benieuwd wat we voor uw organisatie kunnen betekenen? Neem gerust contact met ons op.",
+    "description": "Een terugkerende maaltijd, catering voor een bijeenkomst of een eigen idee? We denken graag mee met bedrijven, zorginstellingen en overheidsorganisaties.",
+    "detail": "Vertel ons wat je zoekt. Samen bekijken we hoe onze Indiase keuken bij jouw organisatie past.",
     "formTitle": "Neem contact op"
   },
   "quote": {
     "metaTitle": "Offerte aanvragen",
-    "metaDescription": "Vraag eenvoudig een cateringofferte aan als particulier of bedrijf. Kies eventueel gerechten, vul uw gegevens in en ontvang een persoonlijk voorstel.",
+    "metaDescription": "Vraag eenvoudig een cateringofferte aan als particulier of bedrijf. Kies eventueel gerechten, vul je gegevens in en ontvang een persoonlijk voorstel.",
     "title": "Offerte aanvragen",
-    "description": "Kies uw gerechten en deel uw gegevens. Uw aanvraag is vrijblijvend."
+    "description": "Vraag vrijblijvend catering aan vanaf {catering.minPeople} personen, minimaal {catering.leadDays} dagen vooraf. Kies eventueel je gerechten en deel je gegevens.",
+    "conditionsTitle": "Aanvragen, betalen en annuleren",
+    "conditions": [
+      { "title": "Persoonlijk voorstel", "text": "We reageren meestal dezelfde of de volgende dag. Je aanvraag is nog geen bestelling. Voor bevestiging vragen we een aanbetaling, meestal 50% van het afgesproken bedrag. De overige betaalafspraken maken we samen." },
+      { "title": "Wijzigen", "text": "Wil je je bestelling aanpassen? Neem contact met ons op, dan stemmen we de wijzigingen samen af." },
+      { "title": "Annuleren", "text": "Annuleer je minimaal 24 uur vóór de afgesproken catering, dan krijg je de volledige aanbetaling terug. Annuleer je later, dan krijg je de helft van de betaalde aanbetaling terug." }
+    ]
   },
   "contact": {
-    "title": "U kunt ons ook bereiken via",
+    "title": "Je kunt ons ook bereiken via",
     "emailLabel": "E-mail",
     "phoneLabel": "Telefoon",
-    "addressLabel": "Adres"
+    "addressLabel": "Adres",
+    "whatsappLabel": "Stuur een WhatsApp",
+    "availability": "Je kunt ons alle dagen bereiken, behalve op donderdag.",
+    "visitNote": "Bezoek alleen op afspraak."
   },
   "privacy": {
     "metaTitle": "Privacybeleid",
     "metaDescription": "Lees hoe {site.name} persoonsgegevens gebruikt voor contact, cateringoffertes en samenwerkingsverzoeken.",
-    "eyebrow": "ZORGVULDIG MET UW GEGEVENS",
+    "eyebrow": "ZORGVULDIG MET JE GEGEVENS",
     "title": "Privacybeleid",
-    "description": "Hoe we omgaan met uw gegevens.",
+    "description": "Hoe we omgaan met je gegevens. Bijgewerkt op 24 november 2026.",
     "sections": [
       {
-        "title": "Wie verwerkt uw gegevens?",
-        "text": "{site.name}, {site.address} in {site.city}, is verantwoordelijk voor de verwerking van persoonsgegevens via deze website. Voor vragen kunt u mailen naar {site.email} of bellen naar {site.phone}."
+        "title": "Wie zijn we?",
+        "text": "{site.name} is de cateringafdeling van {site.legalName}, gevestigd aan {site.address}, {site.postalCode} {site.city}, KvK {site.kvk}. {site.legalName} is verantwoordelijk voor je persoonsgegevens. De eigenaar behandelt privacyvragen. Je bereikt ons via {site.email} of {site.phone}."
       },
       {
         "title": "Welke gegevens ontvangen we?",
-        "text": "Bij een offerte ontvangen we uw naam, e-mailadres, telefoonnummer, de bezorgplaats, datum, groepsgrootte, servieskeuze en eventuele gerechtselectie. Bij een contactbericht ontvangen we uw naam, e-mailadres, telefoonnummer en bericht. Deel alleen gegevens die nodig zijn voor uw aanvraag."
+        "text": "Bij een contactbericht ontvangen we je naam, e-mailadres, telefoonnummer en bericht. Bij een offerte vragen we ook of je particulier of zakelijk aanvraagt, de bezorgplaats, datum, het aantal personen, je servieskeuze en eventueel je gerechten. Voor een bestelling ontvangen we daarnaast de gegevens die nodig zijn voor bezorging en betaling. De verplichte velden zijn nodig om je aanvraag te behandelen. Deel geen medische gegevens of namen van gasten via de webformulieren."
       },
       {
-        "title": "Waarvoor gebruiken we uw gegevens?",
-        "text": "We gebruiken uw gegevens om vragen te beantwoorden, een offerte voor te bereiden of een samenwerking te bespreken. Dit gebeurt om op uw verzoek stappen te nemen vóór een overeenkomst, of vanuit ons gerechtvaardigd belang om contactverzoeken te beantwoorden en misbruik te voorkomen. Het privacyvakje bij de offerte is geen toestemming voor marketing."
+        "title": "Waarom gebruiken we je gegevens?",
+        "text": "We gebruiken je gegevens om contact op te nemen, een offerte op te stellen en je bestelling af te handelen. Dat is nodig om op jouw verzoek een overeenkomst voor te bereiden of uit te voeren. Bij algemene vragen en zakelijke contactpersonen is onze grondslag het gerechtvaardigd belang om contact en samenwerking mogelijk te maken. Ook gebruiken we technische gegevens vanuit ons belang om misbruik te voorkomen. Voor wettelijk verplichte administratie geldt een wettelijke verplichting. Het privacyvakje bevestigt alleen dat je het beleid hebt gelezen."
       },
       {
-        "title": "Hoe ontvangen en bewaren we aanvragen?",
-        "text": "Aanvragen worden per e-mail verzonden via Resend. We slaan de formulieren niet op in een website-database, lokale JSON-bestanden of GitHub. De e-mailcorrespondentie is ons kanaal voor opvolging. We bewaren correspondentie zolang dat nodig is voor de aanvraag, eventuele afspraken en toepasselijke wettelijke verplichtingen. Periodiek beoordelen we welke gegevens verwijderd kunnen worden."
+        "title": "Feedback en publicatie",
+        "text": "Na een opdracht kunnen we om feedback vragen vanuit ons belang om onze dienstverlening te verbeteren. Je kunt daar bezwaar tegen maken via {site.email}; dan benaderen we je hiervoor niet meer. We kunnen je ook vragen of we de samenwerking mogen vermelden. Een herkenbare review, foto of samenwerking publiceren we alleen met voorafgaande toestemming. Die kun je weer intrekken. We gebruiken je gegevens niet voor nieuwsbrieven of aanbiedingen en nemen geen geautomatiseerde besluiten over je."
+      },
+      {
+        "title": "Wie krijgt je gegevens?",
+        "text": "De eigenaar en manager behandelen je aanvraag en bewaren de correspondentie in de zakelijke mailbox bij STRATO. We gebruiken geen CRM of aparte klantendatabase op deze website. De bezorger krijgt alleen het bezorgadres en telefoonnummer dat nodig is voor de levering. We verkopen je gegevens niet."
+      },
+      {
+        "title": "Allergieën en dieetwensen",
+        "text": "Bespreek allergieën en dieetwensen rechtstreeks met ons, bij voorkeur telefonisch. Geef alleen door welke aanpassingen en hoeveel porties nodig zijn, zonder namen van gasten. De chef krijgt allergie-informatie zonder namen. De tijdelijke aantekeningen worden na uitvoering van de opdracht verwijderd. Stuur geen persoonsgebonden medische informatie via de webformulieren."
       },
       {
         "title": "Welke dienstverleners gebruiken we?",
-        "text": "Netlify verzorgt de hosting en Resend de verzending van e-mails. Wanneer de spambeveiliging is ingeschakeld, controleert Cloudflare Turnstile formulierverzendingen; daarbij kunnen technische gegevens zoals IP-adres en browserkenmerken worden verwerkt. Deze dienstverleners kunnen gegevens buiten de Europese Economische Ruimte verwerken. Controleer hun actuele privacyvoorwaarden en toepasselijke doorgiftewaarborgen via de links hieronder."
+        "text": "Netlify verzorgt de website, Resend verstuurt formulierberichten en bevestigingen, STRATO beheert de mailbox en Cloudflare Turnstile beschermt de formulieren tegen spam. Zij verwerken daarvoor ook technische gegevens. Resend bewaart berichtinhoud en aflevergegevens in de Verenigde Staten. Ook Netlify en Cloudflare kunnen gegevens buiten de Europese Economische Ruimte verwerken. Hun verwerkersafspraken bevatten doorgiftewaarborgen zoals Europese standaardcontractbepalingen en, waar van toepassing, het EU–VS Data Privacy Framework. De links hieronder geven meer informatie."
       },
       {
-        "title": "Cookies en uw gerechtselectie",
-        "text": "Deze website gebruikt geen advertentietrackers of analytische trackingcookies. Uw gerechtselectie wordt tijdelijk in sessionStorage in uw eigen browsertab bewaard, zodat deze bij het navigeren behouden blijft. We gebruiken deze selectie uitsluitend voor de offertefunctie. Technische beveiligings- en hostinggegevens kunnen nodig zijn om de website veilig te laten werken."
+        "title": "Bewaren en verwijderen",
+        "text": "Aanvragen en afgehandelde correspondentie blijven in onze mailbox en het mailarchief bewaard. Een concrete verwijdertermijn voor contactvragen, niet-doorgegane offertes en afgeronde opdrachten moet nog worden vastgesteld. Archiveren is ook bewaren. Voor fiscaal verplichte administratie geldt in de regel een bewaarplicht van zeven jaar; dat geldt niet automatisch voor iedere contactmail. Resend hanteert voor standaardabonnementen een bewaartermijn van 30 dagen voor e-mails en logs, met back-ups tot zeven dagen. Andere technische gegevens vallen onder de bewaartermijnen van de betrokken dienstverlener."
       },
       {
-        "title": "Uw rechten",
-        "text": "U kunt vragen om inzage, correctie of verwijdering van uw persoonsgegevens. Afhankelijk van de situatie kunt u ook bezwaar maken, beperking van de verwerking vragen of gegevensoverdraagbaarheid verzoeken. Mail hiervoor naar {site.email}. U kunt daarnaast een klacht indienen bij de Autoriteit Persoonsgegevens."
+        "title": "Website, beveiliging en WhatsApp",
+        "text": "De website gebruikt geen advertentietrackers of bezoekersanalyse. Alleen je gerechtselectie wordt tijdelijk in je browsertab opgeslagen voor de offertefunctie. Hosting en spambeveiliging verwerken onder meer IP-adres en browserkenmerken. Onze server gebruikt tijdelijk gehashte gegevens om misbruik en dubbele verzending te beperken. Cloudflare gebruikt signalen van Turnstile ook voor verbetering van zijn botdetectie. Kies je zelf voor WhatsApp, dan verwerkt WhatsApp gegevens volgens zijn eigen privacybeleid. Je kunt ons ook per e-mail of telefoon bereiken."
+      },
+      {
+        "title": "Je rechten",
+        "text": "Je kunt ons vragen om inzage, correctie of verwijdering van je persoonsgegevens. Afhankelijk van de situatie kun je de verwerking laten beperken, bezwaar maken of je gegevens ontvangen om ze over te dragen. Toestemming voor publicatie kun je intrekken; dit verandert niet de rechtmatigheid van eerdere verwerking. Mail je verzoek naar {site.email}. We reageren in beginsel binnen één maand. Je kunt ook een klacht indienen bij de Autoriteit Persoonsgegevens."
       }
     ],
     "linksTitle": "Meer informatie",
     "links": [
       {
-        "label": "Privacy bij Netlify",
-        "href": "https://www.netlify.com/privacy/"
+        "label": "Verwerkersafspraken Netlify",
+        "href": "https://www.netlify.com/pdf/netlify-dpa.pdf/"
       },
       {
-        "label": "Privacy bij Resend",
-        "href": "https://resend.com/legal/privacy-policy"
+        "label": "Privacy, opslag en bewaartermijnen bij Resend",
+        "href": "https://resend.com/security/gdpr"
       },
       {
-        "label": "Privacy bij Cloudflare",
-        "href": "https://www.cloudflare.com/privacypolicy/"
+        "label": "Privacy bij Cloudflare Turnstile",
+        "href": "https://www.cloudflare.com/turnstile-privacy-policy/"
+      },
+      {
+        "label": "Verwerkersafspraken Cloudflare",
+        "href": "https://www.cloudflare.com/cloudflare-customer-dpa/"
+      },
+      {
+        "label": "Privacy bij STRATO",
+        "href": "https://www.strato.nl/privacy/"
+      },
+      {
+        "label": "Privacy bij WhatsApp",
+        "href": "https://www.whatsapp.com/legal/privacy-policy-eea"
       },
       {
         "label": "Autoriteit Persoonsgegevens",

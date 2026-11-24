@@ -1,4 +1,4 @@
-# Indiase Keuken — catering voor particulieren en bedrijven
+# Indiase Keuken Catering
 
 Nederlandstalige website voor Indiase catering aan particulieren en bedrijven in Utrecht en omgeving. De applicatie gebruikt Next.js App Router, TypeScript strict, Tailwind CSS, Motion, Zod, Lucide en de officiële Resend SDK. De inhoud staat in JSON in deze repository; er is geen database, accountomgeving, CMS of betaalfunctie. De vormgeving gebruikt lokaal gehoste Manrope voor koppen en gewone tekst.
 
@@ -26,7 +26,7 @@ Open de lokale URL die Next.js afdrukt, doorgaans `http://localhost:3000`. Zonde
 
 De scripts voor ontwikkeling en productie gebruiken expliciet Webpack (`next dev --webpack` en `next build --webpack`). Tailwind wordt via `@tailwindcss/postcss` verwerkt. Gebruik daarom de npm-scripts, zodat lokaal en op Netlify dezelfde buildconfiguratie wordt toegepast. Lettertypen en afbeeldingen zijn lokaal aanwezig; de build hoeft geen Google Fonts-bestanden op te halen.
 
-Het menu bevat negen startgerechten: drie hoofdgerechten, drie bijgerechten en drie nagerechten. Ze staan in `src/data/dishes.json`, verschijnen in het menu en zijn direct selecteerbaar in de offerte. Houd voor normaal inhoudsbeheer `CATALOG_DEMO=false`. Met `CATALOG_DEMO=true` wordt **uitsluitend lokaal** een afzonderlijke testcatalogus geladen; daardoor ziet u wijzigingen in de gewone gerechtenlijst niet. Een productiebuild negeert deze instelling. Beheer gerechten en foto's volgens [CONTENT_GUIDE.md](CONTENT_GUIDE.md).
+Het menu bevat negen startgerechten: drie hoofdgerechten, drie bijgerechten en drie nagerechten. Ze staan in `src/data/dishes.json`, verschijnen in het menu en zijn direct selecteerbaar in de offerte. Het veld `type` toont automatisch een label zoals Vegetarisch, Vegan, Vleesgerecht of Visgerecht; met `labels` voegt u maximaal drie korte eigen labels toe. De standaard labelteksten staan in `src/data/dish-labels.json`. Houd voor normaal inhoudsbeheer `CATALOG_DEMO=false`. Met `CATALOG_DEMO=true` wordt **uitsluitend lokaal** een afzonderlijke testcatalogus geladen; daardoor ziet u wijzigingen in de gewone gerechtenlijst niet. Een productiebuild negeert deze instelling. Beheer gerechten en foto's volgens [CONTENT_GUIDE.md](CONTENT_GUIDE.md).
 
 ## Controles
 
@@ -79,9 +79,11 @@ tests/                       Geautomatiseerde controles
 
 De hoofdpagina's zijn `/`, `/menu`, `/over-ons`, `/b2b` en `/offerte`. Daarnaast zijn er `/privacy` en een 404-pagina. Oude pagina-URL's worden doorverwezen naar een passende nieuwe pagina. Er is geen aparte publieke arrangementen-, samenwerkings- of kennismakingsflow.
 
-De offerteflow bestaat uit twee stappen en werkt met of zonder geselecteerde gerechten. De bezoeker kiest particulier of zakelijk en vult naam, e-mailadres, telefoonnummer, plaats, aantal personen, datum en een expliciete keuze voor borden en bestek (ja/nee) in. Akkoord met de privacyverklaring is vereist. De datum moet bekend zijn; er is geen optie “nog niet bekend”. De aanvraag is geen bestelling.
+De offerteflow bestaat uit twee stappen en werkt met of zonder geselecteerde gerechten. De bezoeker kiest particulier of zakelijk en vult naam, e-mailadres, telefoonnummer, plaats, aantal personen, datum en een expliciete keuze voor borden en bestek (ja/nee) in. Kennisname van het privacybeleid is vereist; dit is geen marketingtoestemming. Minimaal 15 personen en twee Amsterdam-kalenderdagen voorbereidingstijd worden in formulier en server gecontroleerd via `src/data/catering-settings.json`. De datum moet bekend zijn. De aanvraag is geen bestelling. De betaal- en annuleringsafspraken staan in een uitklapbare toelichting bij de offerte.
 
 Op `/over-ons` staat het particuliere contactformulier; `/b2b` bevat het zakelijke contactformulier. Beide vragen alleen naam, e-mailadres, telefoonnummer en bericht. Een privacytoelichting met link legt het gebruik van de gegevens uit; deze contactformulieren vragen geen afzonderlijke toestemmingscheckbox. Het systeem verwerkt alleen de aanvraagtypen `quote` en `contact` en geeft het gekozen particuliere of zakelijke onderwerp mee aan de interne e-mail.
+
+De klant krijgt een eigen ontvangstbevestiging voor een offerteaanvraag, particulier contact of zakelijk contact. De teksten staan in `forms-content.json` → `email.confirmations`. De eigenaar/manager volgt op via de STRATO-mailbox. Een WhatsApp-link en bereikbaarheid staan op de contactpagina's; de website verstuurt zelf geen WhatsApp-berichten.
 
 ## Omgevingsvariabelen
 
@@ -159,6 +161,6 @@ Werk dependencies regelmatig gecontroleerd bij, voer lint/types/tests/build uit 
 
 De uitgevoerde controles en concrete verificatiegrenzen staan in [VALIDATION.md](VALIDATION.md).
 
-Zie [CONFIGURATION.md](CONFIGURATION.md) voor de volledige lijst. Het menu is gevuld met negen startgerechten; pas de omschrijvingen en foto's waar nodig aan uw eigen aanbod aan. Voor echte verzending en online ingebruikname zijn nog Resend-credentials, een geverifieerde afzender, Turnstile-sleutels, de GitHub/Netlify-koppeling en domeincontrole nodig. De eigenaar heeft Herderplein 13 in Utrecht en telefoonnummer 06 8487 5866 aangeleverd. Postcode, KvK, btw en socialmedia-URL's blijven leeg zolang ze niet zijn bevestigd.
+Zie [CONFIGURATION.md](CONFIGURATION.md) voor de actuele inrichting en verificatiepunten. Bedrijfsgegevens, bedrijfsverhaal, logo, bereikbaarheid en werkwijze zijn op 24 november 2026 verwerkt. Het adres is Herderplein 13, 3533 BN Utrecht; telefoon 06 2484 5749, KvK 83513817 en btw-id NL862900487B01. Netlify, Resend en Turnstile zijn volgens de eigenaar ingericht; echte aflevering en accountinstellingen zijn niet door de lokale tests bevestigd. Het privacybeleid beschrijft mailboxopslag, leveranciers en de afgesproken verwerking; concrete verwijdertermijnen voor correspondentie moeten nog worden vastgesteld. De gerechten en foto's blijven door de eigenaar te beheren. Er zijn geen klantnamen of sociale profielen toegevoegd.
 
 [CONTENT_GUIDE.md](CONTENT_GUIDE.md) beschrijft het inhoudsbeheer. [ASSETS.md](ASSETS.md) bevat herkomst, rechten en vervanginstructies voor de illustratieve stockfoto's en lokale lettertypen.

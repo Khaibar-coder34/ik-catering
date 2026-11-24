@@ -21,7 +21,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   const catalog = getCatalog();
   const structuredData = {
     "@context": "https://schema.org", "@graph": [
-      { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: site.name, url: siteUrl, email: site.email,
+      { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: site.name, legalName: site.legalName, url: siteUrl, email: site.email, logo: `${siteUrl}/images/branding/indiase-keuken-logo.png`, vatID: site.vat, identifier: { "@type": "PropertyValue", propertyID: "KvK", value: site.kvk }, foundingDate: String(site.foundedYear),
         ...(site.phone ? { telephone: site.phone } : {}),
         address: { "@type": "PostalAddress", addressLocality: site.city, addressCountry: "NL", ...(site.address ? { streetAddress: site.address } : {}), ...(site.postalCode ? { postalCode: site.postalCode } : {}) } },
       { "@type": "Service", "@id": `${siteUrl}/#catering`, name: site.tagline, serviceType: site.tagline, provider: { "@id": `${siteUrl}/#organization` }, areaServed: { "@type": "AdministrativeArea", name: site.serviceArea }, url: siteUrl },

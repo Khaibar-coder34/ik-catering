@@ -20,7 +20,7 @@ test("gewijzigde bedrijfsgegevens verschijnen in privacy, formuliermeldingen en 
   }
   assert.equal(updatedForms.email.brand, replacement.name);
   assert.equal(updatedForms.email.footer, `${replacement.name} · ${replacement.city} · ${replacement.email}`);
-  assert.ok(updatedForms.email.confirmationSubjectSuffix.includes(replacement.name));
+  for (const template of Object.values(updatedForms.email.confirmations)) assert.ok(template.subject.includes(replacement.name));
   assert.ok(rawContent.privacy.sections[0].text.includes("{site.email}"));
 });
 
@@ -30,6 +30,14 @@ test("bedrijfsvervanging behoudt invoervelden, aantallen en onbekende placeholde
   assert.deepEqual(resolved, { nested: [`${site.name}: {count} gerechten`, "{field} is verplicht.", "{site.unknown}"], enabled: true, empty: null, count: 3 });
   assert.equal(formsContent.selectedSummary, rawFormsContent.selectedSummary);
   assert.equal(formsContent.validation.required, rawFormsContent.validation.required);
+});
+
+test("juridische bedrijfsnaam, oprichtingsjaar en cateringvoorwaarden worden centraal ingevuld", () => {
+  const replacement = { ...site, legalName: "Voorbeeld Keuken VOF", legalForm: "VOF", foundedYear: 2021 };
+  assert.equal(resolveSiteTokens("{site.legalName} ({site.legalForm}) sinds {site.foundedYear}", replacement), "Voorbeeld Keuken VOF (VOF) sinds 2021");
+  const updated = resolveSiteTokens(rawContent, replacement, { minPeople: 24, leadDays: 5 });
+  assert.equal(updated.home.note, "Vanaf 24 personen · Minimaal 5 dagen vooraf aanvragen");
+  assert.ok(updated.about.description.includes("2021"));
 });
 
 test("actieve pagina- en e-mailinhoud bevat uitgewerkte bedrijfsgegevens", () => {

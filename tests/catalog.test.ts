@@ -6,7 +6,8 @@ import arrangements from "../src/data/demo/arrangements.json";
 import productionCategories from "../src/data/categories.json";
 import productionDishes from "../src/data/dishes.json";
 import productionArrangements from "../src/data/arrangements.json";
-import { parseCatalog } from "../src/lib/catalog-schema";
+import { dishSchema, parseCatalog } from "../src/lib/catalog-schema";
+import { getDishLabels } from "../src/lib/dish-labels";
 import { isDemoCatalogEnabled } from "../src/lib/catalog";
 import { EMPTY_SELECTION, SelectionError, removeSelectionDish, resolveSelection, restoreSelection, serializeSelection, toggleSelectionDish, validateSelection } from "../src/lib/selection";
 
@@ -39,6 +40,21 @@ test("publication removes draft dishes and dishes in draft categories", () => {
   const result = parseCatalog({ ...source, categories: categories.map((category) => ({ ...category, isPublished: category.id !== "bijgerechten" })) });
   assert.ok(!result.dishes.some((dish) => dish.categoryId === "bijgerechten"));
   assert.ok(result.dishes.some((dish) => dish.categoryId === "hoofdgerechten"));
+});
+
+test("dish labels remain optional and support fish and short custom characteristics", () => {
+  const existing = dishSchema.parse(dishes[0]);
+  assert.equal(existing.labels, undefined);
+  const withLabels = dishSchema.parse({ ...dishes[0], type: "fish", labels: [" Pittig ", "Populair"] });
+  assert.deepEqual(withLabels.labels, ["Pittig", "Populair"]);
+  assert.deepEqual(getDishLabels(withLabels).map((label) => label.text), ["Visgerecht", "Pittig", "Populair"]);
+  assert.deepEqual(getDishLabels({ type: "vegan", labels: ["Vegan", "Pittig", "pittig"] }).map((label) => label.text), ["Vegan", "Pittig"]);
+});
+
+test("dish label validation rejects empty, multiline, long or excessive labels", () => {
+  for (const labels of [[""], ["   "], ["a\nb"], ["x".repeat(19)], ["A", "B", "C", "D"]]) {
+    assert.equal(dishSchema.safeParse({ ...dishes[0], labels }).success, false);
+  }
 });
 
 test("malformed repository data fails validation rather than producing broken cards", () => {

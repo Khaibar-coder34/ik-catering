@@ -1,5 +1,8 @@
 import { z } from "zod";
 import { formsContent as copy } from "@/src/lib/content";
+import { cateringSettings, earliestCateringDate } from "@/src/lib/catering-settings";
+
+export { todayInAmsterdam } from "@/src/lib/catering-settings";
 
 const messages = copy.validation;
 const line = (label: string, max = 160) => z.string().trim()
@@ -31,7 +34,8 @@ export const quoteSchema = z.object({
   ...common,
   kind: z.literal("quote"),
   city: line(copy.fields.city, 100),
-  people: z.number({ error: messages.people }).int(messages.wholePeople).min(1, messages.people).max(100000, messages.largeGroup),
+  people: z.number({ error: messages.people }).int(messages.wholePeople)
+    .min(cateringSettings.minPeople, messages.minimumPeople.replace("{minPeople}", String(cateringSettings.minPeople))),
   date,
   dishIds: z.array(id).max(100).default([]),
   tableware: z.enum(["yes", "no"], { error: messages.tableware }),
@@ -45,16 +49,15 @@ export const contactSchema = z.object({
     .refine((value) => !/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(value), messages.invalidCharacters),
 }).strict();
 
-export function todayInAmsterdam(now = new Date()): string {
-  return new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Amsterdam", year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
-}
-
-export const requestSchema = z.discriminatedUnion("kind", [quoteSchema, contactSchema])
-  .superRefine((value, context) => {
-    if (value.kind === "quote" && value.date && value.date < todayInAmsterdam()) {
-      context.addIssue({ code: "custom", path: ["date"], message: messages.pastDate });
+export function createRequestSchema(now: () => Date = () => new Date()) {
+  return z.discriminatedUnion("kind", [quoteSchema, contactSchema]).superRefine((value, context) => {
+    if (value.kind === "quote" && value.date && value.date < earliestCateringDate(now())) {
+      context.addIssue({ code: "custom", path: ["date"], message: messages.leadDays.replace("{leadDays}", String(cateringSettings.leadDays)) });
     }
   });
+}
+
+export const requestSchema = createRequestSchema();
 
 export type CateringRequest = z.infer<typeof requestSchema>;
 export type RequestKind = CateringRequest["kind"];

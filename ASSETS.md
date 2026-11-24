@@ -76,9 +76,11 @@ WOFF2-bestanden zijn de Latin-subsets die de officiële Google Fonts CSS-service
 
 Copyright Cormorant: © 2015 the Cormorant Project Authors. Copyright Manrope: © 2018 The Manrope Project Authors. Volledige originele licenties zijn meegeleverd als `public/fonts/OFL-CormorantGaramond.txt` en `public/fonts/OFL-Manrope.txt`. Behoud deze bestanden bij herdistributie. De bestanden zijn alleen gedownload; de fontsoftware is niet aangepast.
 
-## Woordmerk en iconen
+## Logo en iconen
 
-Het tijdelijke woordmerk is een voor dit project gemaakte typografische compositie. Het is geen officieel aangeleverd logo en kan worden vervangen. De interface gebruikt Lucide-iconen uit `lucide-react`; de [Lucide-licentie](https://lucide.dev/license) is ISC. De toepasselijke licentietekst wordt met het npm-pakket geleverd.
+De eigenaar heeft op 24 november 2026 `Indiase Keuken Culinary Logo.png` aangeleverd voor gebruik op deze cateringwebsite. Het originele bestand staat ongewijzigd in `public/images/branding/indiase-keuken-logo.png`. De header en footer tonen dit logo met de aanduiding Catering. Next.js verzorgt de beeldoptimalisatie bij het aanbieden; er is geen nieuwe logo-illustratie gemaakt. Vervang het bronbestand alleen door een door de eigenaar goedgekeurd logo. De zichtbare aanduiding staat in `site.json` → `ui.brandCaption`.
+
+De interface gebruikt Lucide-iconen uit `lucide-react`; de [Lucide-licentie](https://lucide.dev/license) is ISC. De toepasselijke licentietekst wordt met het npm-pakket geleverd.
 
 `public/images/branding/social-preview.svg` en `apple-touch-icon.svg` zijn originele, eenvoudige vectorcomposities voor deze website. Zij gebruiken de merknaam, een eigen geometrisch ornament en systeemlettertypen; er is geen beeld van een derde partij verwerkt. De bijbehorende exports `social-preview.jpg` (1200×630) en `apple-touch-icon.png` (180×180) zijn met Sharp uit deze bronbestanden gemaakt. De social preview is op 17 november 2026 aangepast naar “Indiase catering” voor particulieren en bedrijven, met schreefloze tekst. Het Apple-icoon is een afzonderlijk statisch monogram. Bij een merkupdate kunnen de SVG-bronnen worden aangepast en opnieuw geëxporteerd.
 

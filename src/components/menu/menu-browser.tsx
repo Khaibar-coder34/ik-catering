@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { Catalog, Dish } from "@/src/lib/catalog-schema";
 import { FoodImage } from "@/src/components/food-image";
+import { DishLabels } from "@/src/components/menu/dish-labels";
 import copy from "@/src/data/menu-content.json";
 
 export function DemoNotice({ isDemo }: { isDemo: boolean }) {
@@ -13,7 +14,7 @@ export function DishCard({ dish }: { dish: Dish }) {
   const headingId = `product-${dish.id}`;
   return <article className="product-card" aria-labelledby={headingId}>
     <div className="product-photo"><FoodImage src={dish.image} alt={dish.name} fill sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw" /></div>
-    <div className="product-name"><h3 id={headingId}>{dish.name}</h3></div>
+    <div className="product-name"><h3 id={headingId}>{dish.name}</h3><DishLabels dish={dish} /></div>
     <div className="product-description"><p>{dish.description}</p></div>
   </article>;
 }

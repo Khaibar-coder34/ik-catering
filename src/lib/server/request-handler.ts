@@ -1,4 +1,4 @@
-import { requestSchema, validationErrors, type CateringRequest } from "@/src/lib/validation";
+import { createRequestSchema, validationErrors, type CateringRequest } from "@/src/lib/validation";
 import type { ResolvedMenu } from "@/src/emails/request-email";
 import { SubmissionError, type Receipt } from "@/src/lib/server/submission-service";
 import { checkOrigin, checkSecurityConfiguration, readBoundedJson, RequestBoundaryError, type SecurityConfig } from "@/src/lib/server/form-security";
@@ -22,16 +22,18 @@ function json(body: unknown, status = 200, extraHeaders?: HeadersInit) {
 const messages = copy.apiErrors;
 
 export function createRequestHandler(options: HandlerOptions) {
+  const now = options.now ?? Date.now;
+  const schema = createRequestSchema(() => new Date(now()));
   return async function handleRequest(request: Request): Promise<Response> {
     try {
       const hostname = checkOrigin(request, options.security);
       const identity = request.headers.get("x-nf-client-connection-ip") ?? "local-unknown";
       if (!options.rateLimit(identity)) return json({ ok: false, code: "rate_limit", message: messages.rateLimit }, 429, { "Retry-After": "600" });
       const raw = await readBoundedJson(request);
-      const parsed = requestSchema.safeParse(raw);
+      const parsed = schema.safeParse(raw);
       if (!parsed.success) return json({ ok: false, code: "validation", message: copy.validationMessage, fieldErrors: validationErrors(parsed.error) }, 422);
       const data = parsed.data;
-      const elapsed = (options.now ?? Date.now)() - data.startedAt;
+      const elapsed = now() - data.startedAt;
       if (data.website !== "" || elapsed < 1500 || elapsed > 24 * 60 * 60 * 1000) return json({ ok: false, code: "form_check", message: messages.formCheck }, 400);
 
       let menu: ResolvedMenu;

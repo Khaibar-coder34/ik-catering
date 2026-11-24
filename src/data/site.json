@@ -1,16 +1,19 @@
 {
-  "name": "Indiase Keuken",
+  "name": "Indiase Keuken Catering",
+  "legalName": "Indiase Keuken VOF",
+  "legalForm": "VOF",
+  "foundedYear": 2020,
   "tagline": "Indiase catering",
   "email": "info@indiasekeuken.nl",
-  "phone": "0684875866",
+  "phone": "0624845749",
   "address": "Herderplein 13",
-  "postalCode": "",
+  "postalCode": "3533 BN",
   "city": "Utrecht",
-  "kvk": "",
-  "vat": "",
+  "kvk": "83513817",
+  "vat": "NL862900487B01",
   "socials": [],
   "url": "https://catering.indiasekeuken.nl",
-  "serviceArea": "Provincie Utrecht. Landelijk bij grotere opdrachten, in overleg.",
+  "serviceArea": "Utrecht. Grotere opdrachten buiten Utrecht in overleg.",
   "navigation": [
     {
       "label": "Home",
@@ -31,19 +34,20 @@
   ],
   "quoteLabel": "Offerte aanvragen",
   "footer": {
-    "intro": "Indiase catering voor particulieren en bedrijven. Met aandacht bereid in Utrecht.",
+    "intro": "Indiase catering voor particulieren en bedrijven.",
     "privacyLabel": "Privacybeleid",
-    "copyright": "Indiase Keuken",
+    "copyright": "Indiase Keuken Catering",
     "contactTitle": "Contact",
-    "areaText": "Bezorging in Utrecht en omgeving. Andere locaties in overleg."
+    "areaText": "Bezorging in Utrecht. Grotere opdrachten elders in overleg."
   },
   "ui": {
+    "brandCaption": "Catering",
     "skipLink": "Direct naar de inhoud",
     "menuOpen": "Open navigatie",
     "menuClose": "Sluit navigatie",
     "navigationLabel": "Hoofdnavigatie",
-    "homeLabel": "Indiase Keuken — Home",
-    "selectionLabel": "Uw selectie",
+    "homeLabel": "Indiase Keuken Catering — Home",
+    "selectionLabel": "Je selectie",
     "illustrative": "Sfeerbeeld ter inspiratie",
     "imageFallback": "Met aandacht bereid",
     "demoBanner": "Voorbeeldmenu voor ontwikkeling · geen bevestigd aanbod.",
@@ -51,7 +55,7 @@
     "notFoundTitle": "Deze pagina bestaat niet.",
     "notFoundDescription": "Ga terug naar de homepage of ontdek ons menu.",
     "errorTitle": "Er ging iets mis.",
-    "errorDescription": "Probeer de pagina opnieuw te laden. U kunt ons ook rechtstreeks mailen.",
+    "errorDescription": "Probeer de pagina opnieuw te laden. Je kunt ons ook rechtstreeks mailen.",
     "retryLabel": "Probeer opnieuw"
   }
 }
