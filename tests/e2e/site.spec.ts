@@ -5,14 +5,25 @@ import { content, formsContent as formCopy } from "../../src/lib/content";
 import menuCopy from "../../src/data/menu-content.json";
 import publishedDishes from "../../src/data/dishes.json";
 import demoDishes from "../../src/data/demo/dishes.json";
+import publishedCategories from "../../src/data/categories.json";
+import demoCategories from "../../src/data/demo/categories.json";
 import labelCopy from "../../src/data/dish-labels.json";
+import { parseCatalog, type Dish } from "../../src/lib/catalog-schema";
+import { getDishLabels } from "../../src/lib/dish-labels";
 import { cateringSettings, earliestCateringDate, todayInAmsterdam } from "../../src/lib/catering-settings";
 
 const paths = ["/", "/menu", "/over-ons", "/b2b", "/offerte", "/privacy"];
-const categories = ["Hoofdgerechten", "Bijgerechten", "Nagerechten"];
 const reference = "IK-E2E-VOORBEELD";
-const expectedDishes = (process.env.E2E_CATALOG_DEMO === "false" ? publishedDishes : demoDishes).filter((dish) => dish.isPublished);
+const useDemoCatalog = process.env.E2E_CATALOG_DEMO !== "false";
+const expectedCatalog = parseCatalog({ categories: useDemoCatalog ? demoCategories : publishedCategories, dishes: useDemoCatalog ? demoDishes : publishedDishes, arrangements: [] }, useDemoCatalog);
+const categories = expectedCatalog.categories.map((category) => category.name);
+const expectedDishes = expectedCatalog.dishes;
+const [firstChoice, secondChoice] = expectedDishes;
 const futureDate = () => new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+
+function dishChoice(page: Page, dish: Pick<Dish, "id">) {
+  return page.locator(`input[name="dishIds"][value="${dish.id}"]`);
+}
 
 function formFor(page: Page, prefix: "quote" | "contact-private" | "contact-business"): Locator {
   return page.locator("form").filter({ has: page.locator(`#${prefix}-name`) });
@@ -113,9 +124,14 @@ test("B2B toont de bevestigde contactgegevens", async ({ page }) => {
   await expect(contact.getByText(content.contact.visitNote, { exact: true })).toBeVisible();
 });
 
-test("het menu toont drie categorieën en foto, naam, labels en beschrijving per kaart", async ({ page }) => {
+test("het menu toont de ingestelde categorieën, toelichtingen en gerechtkaarten", async ({ page }, testInfo) => {
   await page.goto("/menu");
   await expect(page.locator(".menu-category h2")).toHaveText(categories);
+  for (const category of expectedCatalog.categories) {
+    const section = page.getByRole("region", { name: category.name, exact: true });
+    if (category.description) await expect(section.locator(".menu-category-description")).toHaveText(category.description);
+    else await expect(section.locator(".menu-category-description")).toHaveCount(0);
+  }
   await expect(page.getByRole("searchbox")).toHaveCount(0);
   await expect(page.locator(".menu-browser input, .menu-browser button")).toHaveCount(0);
   await expect(page.getByText("Ongepubliceerd voorbeeld", { exact: true })).toHaveCount(0);
@@ -126,8 +142,10 @@ test("het menu toont drie categorieën en foto, naam, labels en beschrijving per
     await expect(card.getByRole("heading", { level: 3 })).toBeVisible();
     await expect(card.locator(".product-description p")).toBeVisible();
     await expect(card.locator("button, input, a")).toHaveCount(0);
-    const name = await card.getByRole("heading", { level: 3 }).textContent();
-    const dish = expectedDishes.find((dish) => dish.name === name)!;
+    const headingId = await card.getAttribute("aria-labelledby");
+    const dish = expectedDishes.find((dish) => `product-${dish.id}` === headingId)!;
+    await expect(card.getByRole("heading", { level: 3 })).toHaveText(dish.name);
+    await expect(card.locator(".product-description p")).toHaveText(dish.description);
     await expect(card.locator(".dish-label").first()).toHaveText(labelCopy.types[dish.type as keyof typeof labelCopy.types]);
     if (dish.image) {
       await card.scrollIntoViewIfNeeded();
@@ -161,6 +179,16 @@ test("het menu toont drie categorieën en foto, naam, labels en beschrijving per
       expect(geometry.ratios[2], context).toBeCloseTo(0.2, 2);
       expect(geometry.unclipped, context).toBe(true);
     }
+    if (width === 320) {
+      const longestName = expectedDishes.reduce((longest, dish) => dish.name.length > longest.name.length ? dish : longest);
+      await page.locator(`article[aria-labelledby="product-${longestName.id}"]`).screenshot({ path: testInfo.outputPath("long-name-mobile.png") });
+    }
+  }
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.screenshot({ path: testInfo.outputPath("menu-desktop.png") });
+  if (expectedCatalog.categories.some((category) => category.id === "biryanigerechten")) {
+    await page.locator("#menu-biryanigerechten").evaluate((heading) => heading.scrollIntoView({ block: "start" }));
+    await page.screenshot({ path: testInfo.outputPath("biryani-desktop.png") });
   }
 });
 
@@ -174,9 +202,11 @@ test("offerte begint met compacte selectie en kan zonder gerechten verder", asyn
   await expect(page.locator(".compact-category legend")).toHaveText(categories);
   await expect(page.locator(".compact-dish")).toHaveCount(expectedDishes.length);
   await expect(page.locator(".compact-dish p, .compact-dish .product-description")).toHaveCount(0);
-  const veganChoice = page.getByRole("checkbox", { name: "Chana masala", exact: true });
-  await expect(veganChoice).toHaveAccessibleDescription(labelCopy.types.vegan);
-  await expect(page.locator(".compact-dish").filter({ has: veganChoice }).locator(".dish-label").first()).toHaveText(labelCopy.types.vegan);
+  const labeledDish = expectedDishes.find((dish) => dish.type === "vegan") ?? firstChoice;
+  const labeledChoice = dishChoice(page, labeledDish);
+  await expect(labeledChoice).toHaveAccessibleName(labeledDish.name);
+  await expect(labeledChoice).toHaveAccessibleDescription(getDishLabels(labeledDish).map((label) => label.text).join(" "));
+  await expect(page.locator(".compact-dish").filter({ has: labeledChoice }).locator(".dish-label").first()).toHaveText(labelCopy.types[labeledDish.type]);
   const form = await nextStep(page);
   await expect(form.getByLabel(formCopy.fields.people)).toHaveAttribute("min", String(cateringSettings.minPeople));
   await expect(form.getByLabel(formCopy.fields.people)).not.toHaveAttribute("max");
@@ -188,24 +218,24 @@ test("offerte begint met compacte selectie en kan zonder gerechten verder", asyn
 
 test("gerechtselectie blijft behouden bij navigatie en herladen en kan verwijderd worden", async ({ page }) => {
   await page.goto("/offerte");
-  await page.getByRole("checkbox", { name: "Naan", exact: true }).check();
-  await page.getByRole("checkbox", { name: "Kheer", exact: true }).check();
-  await page.getByRole("checkbox", { name: "Kheer", exact: true }).uncheck();
+  await dishChoice(page, firstChoice).check();
+  await dishChoice(page, secondChoice).check();
+  await dishChoice(page, secondChoice).uncheck();
   await page.locator(".desktop-nav").getByRole("link", { name: "Menu", exact: true }).click();
   await page.locator(".header-cta").click();
-  await expect(page.getByRole("checkbox", { name: "Naan", exact: true })).toBeChecked();
+  await expect(dishChoice(page, firstChoice)).toBeChecked();
   await page.reload();
-  await expect(page.getByRole("checkbox", { name: "Naan", exact: true })).toBeChecked();
-  await expect(page.getByRole("checkbox", { name: "Kheer", exact: true })).not.toBeChecked();
-  await page.getByRole("checkbox", { name: "Naan", exact: true }).uncheck();
+  await expect(dishChoice(page, firstChoice)).toBeChecked();
+  await expect(dishChoice(page, secondChoice)).not.toBeChecked();
+  await dishChoice(page, firstChoice).uncheck();
   await expect(page.locator(".selection-total")).toHaveText(`0 ${menuCopy.selectedPlural}`);
 });
 
 test("oude arrangementopslag beïnvloedt de nieuwe offerte niet", async ({ page }) => {
-  await page.addInitScript(() => sessionStorage.setItem("ik-catering-selection:v1:demo", JSON.stringify({ version: 1, selection: { dishIds: ["naan"], arrangementId: "klassiek-buffet", arrangementDishIds: ["butter-chicken", "naan"] } })));
+  await page.addInitScript(({ key, ids }) => sessionStorage.setItem(key, JSON.stringify({ version: 1, selection: { dishIds: [ids[0]], arrangementId: "klassiek-buffet", arrangementDishIds: ids } })), { key: `ik-catering-selection:v1:${useDemoCatalog ? "demo" : "published"}`, ids: [firstChoice.id, secondChoice.id] });
   await page.goto("/offerte");
-  await expect(page.getByRole("checkbox", { name: "Naan", exact: true })).not.toBeChecked();
-  await expect(page.getByRole("checkbox", { name: "Butter chicken", exact: true })).not.toBeChecked();
+  await expect(dishChoice(page, firstChoice)).not.toBeChecked();
+  await expect(dishChoice(page, secondChoice)).not.toBeChecked();
 });
 
 test("Terug bewaart ingevulde gegevens, radiokeuzes en privacyakkoord", async ({ page }) => {
@@ -216,7 +246,7 @@ test("Terug bewaart ingevulde gegevens, radiokeuzes en privacyakkoord", async ({
   await form.getByRole("radio", { name: formCopy.audiences.business, exact: true }).check();
   await form.getByRole("button", { name: formCopy.back, exact: true }).click();
   await expect(page.getByRole("heading", { name: formCopy.menuStep, exact: true })).toBeFocused();
-  await page.getByRole("checkbox", { name: "Kheer", exact: true }).check();
+  await dishChoice(page, secondChoice).check();
   await nextStep(page);
   await expect(form.getByLabel(formCopy.fields.name)).toHaveValue("Testpersoon");
   await expect(form.getByLabel(formCopy.fields.email)).toHaveValue("test@example.com");
@@ -250,12 +280,12 @@ test("aantal personen, datum en servieskeuze zijn verplicht", async ({ page }) =
   expect(requests).toBe(0);
 });
 
-for (const scenario of [{ audience: "private", dishes: [] }, { audience: "business", dishes: ["Naan", "Kheer"] }] as const) {
+for (const scenario of [{ audience: "private", dishes: [] }, { audience: "business", dishes: [firstChoice, secondChoice] }] as const) {
   test(`offerte voor ${scenario.audience} ${scenario.dishes.length ? "met" : "zonder"} gerechten verstuurt`, async ({ page }) => {
     const sent: Record<string, unknown>[] = [];
     await acceptRequests(page, sent);
     await page.goto("/offerte");
-    for (const name of scenario.dishes) await page.getByRole("checkbox", { name, exact: true }).check();
+    for (const dish of scenario.dishes) await dishChoice(page, dish).check();
     await nextStep(page);
     const form = await fillQuote(page);
     await form.getByRole("radio", { name: formCopy.audiences[scenario.audience], exact: true }).check();
@@ -265,7 +295,7 @@ for (const scenario of [{ audience: "private", dishes: [] }, { audience: "busine
     await expect(page.getByText(formCopy.confirmationSent, { exact: true })).toBeVisible();
     await expect(page.getByText(reference, { exact: true })).toBeVisible();
     expect(sent).toHaveLength(1);
-    expect(sent[0].dishIds).toEqual(scenario.dishes.length ? ["naan", "kheer"] : []);
+    expect(sent[0].dishIds).toEqual(scenario.dishes.map((dish) => dish.id));
     expect(sent[0]).toMatchObject({ kind: "quote", audience: scenario.audience, people: 24, tableware: "yes", privacy: true });
     expect(sent[0]).not.toHaveProperty("arrangementId");
   });

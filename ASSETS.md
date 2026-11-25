@@ -1,6 +1,31 @@
 # Afbeeldingen, lettertypen en rechten
 
-Alle hieronder genoemde bestanden zijn lokaal opgeslagen. Bezoekers hoeven voor foto's en lettertypen geen externe beeldbank- of Google Fonts-verbinding op te bouwen. De foto’s zijn illustratieve stockbeelden, geen eigen fotografie van Indiase Keuken. Presentatie, garnering en porties kunnen afwijken van de uiteindelijke catering.
+Alle hieronder genoemde bestanden zijn lokaal opgeslagen. Bezoekers hoeven voor foto's en lettertypen geen externe beeldbank- of Google Fonts-verbinding op te bouwen. Het actuele menu gebruikt op verzoek AI-gegenereerde buffetbeelden. De sfeerfoto's op de overige pagina's zijn stockbeelden. Het zijn geen foto's van uitgevoerde opdrachten van Indiase Keuken; presentatie, garnering en porties kunnen afwijken van de uiteindelijke catering.
+
+## Actuele buffetfoto's — 25 november 2026
+
+Voor de veertien gerechten zijn veertien afzonderlijke beelden gegenereerd met de ingebouwde `image_gen`-tool. De namen en beschrijvingen uit het aangepaste menu vormden het uitgangspunt. Alle geselecteerde beelden tonen het betreffende gerecht in een grote roestvrijstalen buffetpan, met zachte natuurlijke belichting. Mix Sabzi staat één keer als vegan gerecht op het menu. De variantgroep naan deelt één foto van een assortiment naanbroden.
+
+De geselecteerde originelen staan als PNG van 1536×1024 in `public/images/dishes/buffet/`. `dishes.json` verwijst naar die projectbestanden; de website is niet afhankelijk van de werkmap van de beeldgenerator. Next.js optimaliseert de afbeeldingen bij het aanbieden. De bestaande stockbestanden zijn behouden en niet overschreven.
+
+| Bestand in `public/images/dishes/buffet/` | Gerecht |
+| --- | --- |
+| `butter-chicken.png` | Butter chicken |
+| `chicken-korma.png` | Chicken Korma, volgens de opgegeven bereiding met kip en gele linzen in tomatencurry |
+| `chicken-seekh-kebap.png` | Chicken Seekh Kebap |
+| `lamb-tikka-masala.png` | Lamb Tikka Masala |
+| `palak-paneer.png` | Palak Paneer |
+| `mix-sabzi.png` | Mix Sabzi, vegan |
+| `daal-aaloo-korma.png` | Daal Aaloo Korma |
+| `vegetarische-biryani.png` | Vegetarische Biryani |
+| `chicken-biryani.png` | Chicken Biryani met tandoorikip |
+| `samosa-chaat.png` | Samosa Chaat met linzencurry en yoghurt |
+| `naan-assortiment.png` | De verschillende naanvarianten |
+| `samosa.png` | Samosa met aardappel en doperwten |
+| `fruit-chaat.png` | Fruit Chaat |
+| `gulab-jamun.png` | Gulab jamun |
+
+De volledige gebruikte prompts, oorspronkelijke uitvoerpaden en projectbestemmingen staan in [buffet-meat-prompts.json](docs/buffet-meat-prompts.json), [buffet-vegetable-prompts.json](docs/buffet-vegetable-prompts.json) en [buffet-additional-prompts.json](docs/buffet-additional-prompts.json). Een extra, niet geselecteerde biryani-variant is uitsluitend in de promptregistratie vermeld en wordt niet door de website gebruikt. De menupagina vermeldt dat het AI-gegenereerde sfeerbeelden zijn; die toelichting staat in `menu-content.json` → `imageNote`.
 
 De oorspronkelijke sfeerbeelden zijn gecontroleerd op 15 november 2026 en vallen onder de **Unsplash License**, niet onder Unsplash+. De negen gerechtfoto's zijn toegevoegd en gecontroleerd op 18 november 2026; hun bronnen en licenties staan hieronder afzonderlijk vermeld.
 
@@ -24,7 +49,7 @@ De [Unsplash License](https://unsplash.com/license) staat gratis commercieel geb
 
 Bestanden zijn verkleind en naar WebP omgezet met Sharp, kwaliteit 84. Er zijn geen personen toegevoegd of als medewerkers benoemd. De website kan voor een kader bijsnijden via CSS `object-fit`. Afmetingen: hero 1920×1280, buffet 1400×1867, specerijen 1400×934, evenement 1600×1067. Originele tijdelijke downloads zijn na optimalisatie verwijderd.
 
-## Gerechtfoto's — toegevoegd op 18 november 2026
+## Eerdere gerechtfoto's — behouden, toegevoegd op 18 november 2026
 
 Alle negen bestanden staan onder `public/images/dishes/`. De afbeeldingen zijn visueel gecontroleerd op het bedoelde gerecht en dienen als illustratie van het startmenu. Het zijn echte stockfoto's, geen gegenereerde beelden. Namen, ingrediënten en werkelijk aanbod blijven inhoudelijk te beheren in `src/data/dishes.json`.
 

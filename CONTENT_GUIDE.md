@@ -6,9 +6,9 @@ De website gebruikt **geen database**. Gerechten, teksten en bedrijfsgegevens st
 
 | Wat wil je wijzigen? | Bestand | Belangrijkste velden |
 | --- | --- | --- |
-| Gerechten toevoegen, aanpassen, verbergen of sorteren | [`src/data/dishes.json`](src/data/dishes.json) | `name`, `description`, `categoryId`, `image`, `type`, `labels`, `sortOrder`, `isPublished` |
+| Gerechten toevoegen, aanpassen, verbergen of sorteren | [`src/data/dishes.json`](src/data/dishes.json) | `name`, `description`, `categoryId`, `image`, `type`, `labels`, `sortOrder`, `isPublished`; `_comment` voor redactiehulp |
 | Zichtbare namen van gerechtsoorten | [`src/data/dish-labels.json`](src/data/dish-labels.json) | `types.vegetarian`, `types.vegan`, `types.meat`, `types.fish` |
-| Namen en volgorde van de drie categorieën | [`src/data/categories.json`](src/data/categories.json) | `name`, `sortOrder`, `isPublished` |
+| Categoriekoppen, tekst onder de koppen en volgorde | [`src/data/categories.json`](src/data/categories.json) | `name`, `description`, `sortOrder`, `isPublished`; `_comment` voor redactiehulp |
 | Bedrijfsnaam, e-mail, telefoon en adres | [`src/data/site.json`](src/data/site.json) | `name`, `email`, `phone`, `address`, `postalCode`, `city` |
 | Juridische onderneming en startjaar | [`src/data/site.json`](src/data/site.json) | `legalName`, `legalForm`, `foundedYear` |
 | Minimumgroep en voorbereidingstijd | [`src/data/catering-settings.json`](src/data/catering-settings.json) | `minPeople`, `leadDays`; werkt door in formulieren, servervalidatie en teksten met `{catering.*}` |
@@ -33,15 +33,44 @@ Voor gewone inhoudswijzigingen hoef je geen `.tsx`- of `.ts`-bestanden aan te pa
 
 ## Het ingevulde menu
 
-Er zijn negen startgerechten ingevuld, drie per categorie:
+Het actuele menu staat in `src/data/dishes.json`. De gerechten worden op `categoryId` verdeeld over deze vier categorieën:
 
-| Categorie | Gerechten | `categoryId` |
+| Categorie | `categoryId` | Volgorde (`sortOrder`) |
 | --- | --- | --- |
-| Hoofdgerechten | Butter chicken, Palak paneer, Chana masala | `hoofdgerechten` |
-| Bijgerechten | Basmatirijst, Naan, Samosa | `bijgerechten` |
-| Nagerechten | Kheer, Gulab jamun, Mango kulfi | `nagerechten` |
+| Hoofdgerechten | `hoofdgerechten` | 10 |
+| Biryani Gerechten | `biryanigerechten` | 20 |
+| Bijgerechten | `bijgerechten` | 30 |
+| Nagerechten | `nagerechten` | 40 |
 
-Deze gerechten staan in `src/data/dishes.json` en verschijnen zowel in het menu als in stap 1 van de offerteaanvraag. Pas de omschrijvingen aan je eigen bereiding aan. De foto's zijn illustratief; je kunt ze vervangen door eigen fotografie. De beeldbronnen staan in [ASSETS.md](ASSETS.md).
+Gepubliceerde gerechten verschijnen zowel in het menu als in stap 1 van de offerteaanvraag. Pas de omschrijvingen aan je eigen bereiding aan. Een leeg afbeeldingspad geeft een vervangend beeldvlak. Gebruik passende eigen foto's of foto's met geschikte rechten; de gebruikte beeldbronnen staan in [ASSETS.md](ASSETS.md).
+
+De huidige veertien gerechten hebben elk een AI-gegenereerd buffetbeeld in `public/images/dishes/buffet/`. Mix Sabzi staat één keer als vegan gerecht vermeld. De naam en beschrijving van je gerechten zijn behouden; alleen technische ID's zijn waar nodig omgezet naar kleine letters en de fotopaden zijn gekoppeld aan de nieuwe beelden.
+
+## Een categoriekop of begeleidende tekst wijzigen
+
+Open `src/data/categories.json` en zoek de categorie op `id`. De velden hebben elk een eigen functie:
+
+- **`name`** is de zichtbare kop op het menu en in de compacte offerteselectie.
+- **`description`** is de begeleidende tekst direct onder de categoriekop op `/menu`. Gebruik `""` om deze tekst weg te laten. De offerte houdt alleen de categorienaam, zodat de selectie compact blijft.
+- **`sortOrder`** bepaalt de categorievolgorde; een lager getal verschijnt eerder. Dit staat los van `sortOrder` binnen ieder gerecht.
+- **`isPublished`** bepaalt of de categorie en haar gerechten zichtbaar zijn.
+- **`id`** en **`slug`** blijven bij voorkeur ongewijzigd. `categoryId` bij een gerecht moet exact naar de `id` verwijzen.
+
+Voorbeeld van de Biryani-categorie:
+
+```json
+{
+  "_comment": "Wijzig name voor de kop en description voor de tekst onder de kop.",
+  "id": "biryanigerechten",
+  "slug": "biryanigerechten",
+  "name": "Biryani Gerechten",
+  "description": "Geurige rijstgerechten met Indiase kruiden.",
+  "sortOrder": 20,
+  "isPublished": true
+}
+```
+
+Een categoriebeschrijving is iets anders dan `description` in `dishes.json`: die laatste tekst beschrijft één gerecht en staat onder de gerechtnaam op zijn kaart.
 
 ## Een gerecht aanpassen of toevoegen
 
@@ -51,6 +80,7 @@ Dit is een compleet voorbeeldobject voor een nieuw gerecht. Voeg eerst de bijbeh
 
 ```json
 {
+  "_comment": "Voorbeeld: controleer naam, recept, foto en type voordat je dit gerecht publiceert.",
   "id": "groentecurry",
   "slug": "groentecurry",
   "name": "Groentecurry",
@@ -71,17 +101,28 @@ Voeg dit object **binnen de bestaande `[` en `]`** toe. Zet een komma tussen twe
 | `id` | Unieke interne sleutel. Gebruik kleine letters, cijfers en streepjes; bijvoorbeeld `groentecurry`. Verander een bestaande sleutel liever niet. |
 | `slug` | Unieke leesbare sleutel, meestal gelijk aan `id`. |
 | `name` | Naam op de productkaart en in de offerte. Wordt ook als beeldbeschrijving gebruikt. |
-| `categoryId` | Exact één van de drie waarden uit de categorietabel hierboven. |
+| `categoryId` | Exact één van de vier waarden uit de categorietabel hierboven. Voor biryani: `biryanigerechten`. |
 | `description` | Korte beschrijving van het gerecht. Houd deze bij één of twee korte zinnen. |
 | `image` | Lokaal afbeeldingspad, bijvoorbeeld `/images/dishes/groentecurry.webp`. |
 | `type` | `vegetarian`, `vegan`, `meat` of `fish`. De bijbehorende Nederlandse naam verschijnt als label. |
 | `labels` | Optionele lijst met maximaal drie eigen labels, elk maximaal 18 tekens. Bijvoorbeeld `["Pittig", "Populair"]`. Laat het veld weg of gebruik `[]` als je geen extra labels wilt. |
 | `sortOrder` | Geheel getal vanaf 0. Lager betekent eerder binnen de categorie. |
 | `isPublished` | `true` toont het gerecht; `false` verbergt het uit zowel menu als offerte. |
+| `_comment` | Optionele redactiehulp, maximaal 2.000 tekens. Wordt bij het inlezen verwijderd en verschijnt niet op de website of in de catalogusgegevens voor de browser. |
 
 Een gerecht kan alleen zichtbaar zijn als ook zijn categorie `isPublished: true` heeft. Tijdelijk verbergen gaat het makkelijkst met `isPublished: false`; verwijderen kan door het hele object weg te halen en de omliggende komma's te controleren. De categorieën zelf beheer je in `categories.json`. Behoud hun bestaande `id` en `slug`, zodat verwijzingen vanuit gerechten blijven werken.
 
 Het optionele veld `allergens` is een lijst met gecontroleerde allergenen. Voeg dit alleen toe als de keuken de gegevens heeft bevestigd. Het wordt momenteel niet op de kaart getoond; het ontbreken ervan zegt niets over allergenen of kruiscontact.
+
+## Opmerkingen toevoegen in JSON
+
+De bestanden gebruiken gewone **JSON**, geen JSONC. Losse regels zoals `// Vleesgerechten` en blokken met `/* ... */` zijn daarom ongeldig en stoppen de websitebuild. Gebruik voor uitleg het ondersteunde tekstveld `_comment` binnen een gerecht of categorie:
+
+```json
+"_comment": "Vleesgerechten: wijzig hieronder de naam en beschrijving. Behoud de unieke id."
+```
+
+Dit is een veld binnen het bestaande object, dus zet zo nodig een komma voor of na het veld. Je mag de notitie wijzigen of het hele `_comment`-veld verwijderen. Een notitie bij het eerste gerecht van een groep is alleen een hulpmiddel voor de redacteur: `categoryId` bepaalt waar ieder gerecht daadwerkelijk verschijnt. `name` en `description` blijven de velden voor bezoekers. De korte comments in de `.tsx`- en `.ts`-bestanden leggen uit waar de JSON wordt ingelezen; voor tekstwijzigingen hoef je die code niet te bewerken.
 
 ## Labels bij gerechten
 
@@ -180,7 +221,7 @@ De privacytekst bevat de werkelijke mailbox- en leveranciersverwerking. De verwi
 ## Opslaan, bekijken en publiceren
 
 1. Bewerk de JSON en voeg eventuele afbeeldingen toe.
-2. Gebruik dubbele aanhalingstekens. Schrijf `true` en `false` zonder aanhalingstekens. Gebruik geen comments en geen komma na het laatste veld of object.
+2. Gebruik dubbele aanhalingstekens. Schrijf `true` en `false` zonder aanhalingstekens. Gebruik geen `//`- of `/* */`-comments en geen komma na het laatste veld of object. Redactiehulp kan in het optionele `_comment`-tekstveld bij gerechten en categorieën.
 3. Start `npm run dev` en bekijk `/menu`, `/offerte` en de aangepaste pagina. De ontwikkelserver toont opgeslagen wijzigingen automatisch. Een reeds draaiende productieversie via `npm run start` vereist eerst een nieuwe `npm run build` en daarna een herstart.
 4. Controleer voor publicatie met `npm run typecheck`, `npm test` en `npm run build`. De cataloguscontrole meldt onder meer ontbrekende velden, dubbele ID's en onbekende categorieën.
 5. Commit en push de wijzigingen naar de gekoppelde productiebranch. Zodra GitHub en Netlify zijn gekoppeld, bouwt Netlify de nieuwe website. Alleen lokaal opslaan verandert de online versie niet.

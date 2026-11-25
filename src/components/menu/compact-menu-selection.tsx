@@ -11,6 +11,7 @@ export function CompactMenuSelection({ catalog }: { catalog: Catalog }) {
   return <div className="compact-menu-selection">
     {catalog.isDemo && <p className="demo-notice" role="note">{copy.demoNotice}</p>}
     {!catalog.dishes.length && <p className="selection-empty-note">{copy.selectionEmpty}</p>}
+    {/* Dezelfde JSON-categorieën als op het menu; de offerteselectie blijft compact. */}
     {catalog.categories.map((category) => {
       const dishes = catalog.dishes.filter((dish) => dish.categoryId === category.id);
       return <fieldset className="compact-category" key={category.id}>

@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-25",
+  "tool": "image_gen (built-in)",
+  "purpose": "AI-gegenereerde sfeerbeelden voor de cateringmenukaart; geen foto's van uitgevoerde opdrachten.",
+  "images": [
+    {
+      "file": "naan-assortiment.png",
+      "source": "C:\\Users\\KhaibarKarimi\\.codex\\generated_images\\01a1df1e-32ab-7392-a516-9c47e02ac75d\\exec-b6ea9912-3495-4deb-896c-33ad9684b8f2.png",
+      "prompt": "Use case: photorealistic-natural. Asset: one landscape 3:2 photograph for the menu of an Indian catering company. Subject: a generous assortment of freshly baked tandoor naan bread, including plain naan, garlic naan, cheese naan, butter naan, chilli garlic naan and chilli cheese naan. Stack the breads naturally in ONE LARGE rectangular brushed stainless-steel gastronorm buffet pan on a clean neutral buffet table. Show characteristic blistered tandoor surfaces, softly folded edges, modest garlic and green chilli topping on some breads and melted cheese on some, without changing all breads into the same variant. Camera at 45 degrees slightly overhead, keep the visible metal pan rim and the food centered and safe for a rectangular website crop. Warm soft natural light, realistic food texture and soft shadows, professional appetizing buffet photography. The bread is the only main dish. No single portion plate, no people, no words, no logo, no watermark, no excessive decoration, no utensils covering the bread.",
+      "destination": "public/images/dishes/buffet/naan-assortiment.png"
+    },
+    {
+      "file": "fruit-chaat.png",
+      "source": "C:\\Users\\KhaibarKarimi\\.codex\\generated_images\\01a1df1e-32ab-7392-a516-9c47e02ac75d\\exec-b1713ce8-50c4-4872-b336-73e0240e5c98.png",
+      "prompt": "Use case: photorealistic-natural. Asset: landscape 3:2 food photograph for an Indian catering menu. Subject: Fruit Chaat, a generous buffet quantity of assorted fresh fruit cut into small pieces, mixed with yogurt and a subtle dusting of Indian fruit chaat spice. Show recognizably fresh apple, banana, orange, grapes and seasonal melon pieces with a light yogurt coating, colorful fruit still visible rather than submerged in a white soup. Present the dish in ONE LARGE rectangular brushed stainless-steel gastronorm buffet pan on a clean neutral buffet table, suitable for chilled catering service, no steam. Camera at 45 degrees slightly overhead. Food centered, visible metal rim, safe for a rectangular website crop, warm soft natural light, realistic fruit and yogurt textures. No individual bowls or single portion plates, no people, no words, no logo, no watermark, no utensils covering the food. Professional, appetizing, honest-looking buffet food photography.",
+      "destination": "public/images/dishes/buffet/fruit-chaat.png"
+    },
+    {
+      "file": "gulab-jamun.png",
+      "source": "C:\\Users\\KhaibarKarimi\\.codex\\generated_images\\01a1df1e-32ab-7392-a516-9c47e02ac75d\\exec-1621c1cb-265f-41a7-98b6-b5903b60093b.png",
+      "prompt": "Use case: photorealistic-natural. Asset: landscape 3:2 photograph for the dessert category of an Indian catering menu. Subject: a generous catering quantity of Gulab Jamun, soft golden-to-deep-brown fried dough balls soaked in clear amber fragrant sugar syrup. Present many naturally arranged round gulab jamun in ONE LARGE rectangular brushed stainless-steel gastronorm buffet pan on a clean neutral buffet table. Syrup glistens realistically, moist slightly porous dough texture, only very subtle cardamom specks if visible. This is gulab jamun, not doughnuts, meatballs or fruit. Camera at 45 degrees slightly overhead, keep the pan rim visible and the dessert central for a website crop. Warm soft natural light, realistic reflections and food texture, appetizing professional buffet photography. No separate bowls or single portion plates, no people, no words, no logos, no watermark, no colorful garnish, no utensils covering the food.",
+      "destination": "public/images/dishes/buffet/gulab-jamun.png"
+    },
+    {
+      "file": "samosa.png",
+      "source": "C:\\Users\\KhaibarKarimi\\.codex\\generated_images\\01a1df1e-32ab-7392-a516-9c47e02ac75d\\exec-f6f07fb5-7068-4047-b24c-fa20a479301e.png",
+      "prompt": "Use case: photorealistic-natural. Asset: landscape 3:2 food photograph for an Indian catering menu. Subject: a large batch of crispy golden triangular samosas filled with potato, green peas and Indian spices, suitable for a vegan buffet. Present many samosas neatly but naturally piled in ONE LARGE rectangular brushed stainless-steel gastronorm buffet pan. One samosa in the foreground is split open to reveal the potato-and-pea filling. Dry crisp bubbly pastry, no yogurt, no cream, no meat, no curry sauce poured over them: these are plain samosas, not samosa chaat. Clean neutral buffet table, camera at 45 degrees slightly overhead, visible metal pan rim, food centered and safe for a website crop. Warm soft natural light and realistic pastry texture. No single portion plate, no people, no words, no logo, no watermark, no utensils covering the food. Professional appetizing buffet photography.",
+      "destination": "public/images/dishes/buffet/samosa.png"
+    },
+    {
+      "file": "chicken-biryani.png",
+      "source": "C:\\Users\\KhaibarKarimi\\.codex\\generated_images\\01a1df1e-32ab-7392-a516-9c47e02ac75d\\exec-8e0d5bdd-1de3-43f5-ad1e-6e04466b1821.png",
+      "prompt": "Use case: photorealistic-natural. Asset: landscape 3:2 photograph for an Indian catering menu. Subject: Chicken Biryani made with long-grain sela rice seasoned with Indian spices and visibly generous pieces of chicken marinated in tandoori spices. Distinct fluffy long rice grains in natural ivory, golden and saffron tones, roasted reddish-orange tandoori chicken pieces with slight char, sparsely scattered fresh coriander. Serve a large catering quantity in ONE LARGE rectangular brushed stainless-steel gastronorm buffet pan on a clean neutral buffet table. Food fills the pan naturally; keep the metal rim visible. Camera at 45 degrees slightly overhead, centered composition safe for a website crop, warm soft natural light, realistic rice and chicken texture, professional appetizing buffet photograph. No individual plate, no people, no text, no logo, no watermark, no egg, no unrelated side dishes, no utensils obscuring the food.",
+      "destination": "public/images/dishes/buffet/chicken-biryani.png"
+    }
+  ]
+}

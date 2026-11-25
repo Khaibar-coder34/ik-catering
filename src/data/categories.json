@@ -1,5 +1,38 @@
 [
-  { "id": "hoofdgerechten", "slug": "hoofdgerechten", "name": "Hoofdgerechten", "description": "Warme gerechten om samen van te genieten.", "sortOrder": 1, "isPublished": true },
-  { "id": "bijgerechten", "slug": "bijgerechten", "name": "Bijgerechten", "description": "Een smaakvolle aanvulling op uw menu.", "sortOrder": 2, "isPublished": true },
-  { "id": "nagerechten", "slug": "nagerechten", "name": "Nagerechten", "description": "Een mooie afsluiting van uw maaltijd.", "sortOrder": 3, "isPublished": true }
+  {
+    "_comment": "Wijzig name voor de kop en description voor de tekst eronder. Behoud id en slug; gerechten verwijzen naar deze id.",
+    "id": "hoofdgerechten",
+    "slug": "hoofdgerechten",
+    "name": "Hoofdgerechten",
+    "description": "Warme gerechten om samen van te genieten.",
+    "sortOrder": 10,
+    "isPublished": true
+  },
+  {
+    "_comment": "Gerechten met categoryId biryanigerechten verschijnen hier. De beschrijving staat onder deze kop op de menupagina.",
+    "id": "biryanigerechten",
+    "slug": "biryanigerechten",
+    "name": "Biryani Gerechten",
+    "description": "Geurige rijstgerechten met Indiase kruiden.",
+    "sortOrder": 20,
+    "isPublished": true
+  },
+  {
+    "_comment": "Wijzig name en description voor de zichtbare teksten. Een lager sortOrder plaatst de categorie eerder op het menu.",
+    "id": "bijgerechten",
+    "slug": "bijgerechten",
+    "name": "Bijgerechten",
+    "description": "Een smaakvolle aanvulling op je menu.",
+    "sortOrder": 30,
+    "isPublished": true
+  },
+  {
+    "_comment": "Wijzig name en description voor de zichtbare teksten. isPublished false verbergt ook alle gerechten in deze categorie.",
+    "id": "nagerechten",
+    "slug": "nagerechten",
+    "name": "Nagerechten",
+    "description": "Een mooie afsluiting van je maaltijd.",
+    "sortOrder": 40,
+    "isPublished": true
+  }
 ]

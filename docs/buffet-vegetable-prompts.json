@@ -1,0 +1,71 @@
+{
+  "generatedAt": "2026-11-25",
+  "generator": "Built-in image_gen.imagegen tool",
+  "mode": "generate",
+  "calls": 5,
+  "transparentBackground": false,
+  "originalsPreserved": true,
+  "notes": "AI-generated illustrative catering catalog images based on user-provided dish descriptions; not photographs of executed catering events. Original PNG outputs copied unmodified from Codex generated_images to the project. Each asset generated with a separate tool call; no stock substitution.",
+  "assets": [
+    {
+      "slug": "palak-paneer",
+      "prompt": "Use case: photorealistic-natural.\nAsset type: Indian catering menu catalog photograph, landscape 3:2 composition.\nPrimary request: palak paneer in one LARGE rectangular brushed stainless-steel gastronorm buffet pan.\nSubject: deep green spinach curry containing clearly recognizable cubes of Indian paneer cheese, with onion, ginger and tomato cooked into the spinach. The curry must be deep spinach green, not orange. Generous catering quantity, not a single portion.\nScene/backdrop: clean neutral buffet table, uncluttered softly blurred neutral background.\nComposition/framing: 45-degree slightly overhead view; the rectangular pan fills most of the frame with its brushed steel rim visible on all sides. Food is centered and remains recognizable under common website card crops. Close enough to see natural spinach texture and paneer surfaces.\nLighting/mood: warm, soft natural light, appetizing realistic food photography, believable texture and gentle metal reflections.\nConstraints: one main gastronorm pan; no people, hands, text, letters, branding, logos, watermarks, single-portion plates, or utensils obscuring the food. No orange sauce.",
+      "file": "public/images/dishes/buffet/palak-paneer.png",
+      "source": "C:/Users/KhaibarKarimi/.codex/generated_images/01a1df1f-ad31-7540-99be-1f6aa2515e82/exec-c5e646c0-0c19-49f6-8f67-5ea95816d6e1.png",
+      "width": 1536,
+      "height": 1024,
+      "visualReview": {
+        "passed": true,
+        "observations": "Deep green spinach curry, recognizable paneer cubes and visible onion/tomato; large steel buffet pan; no text or people."
+      }
+    },
+    {
+      "slug": "mix-sabzi",
+      "prompt": "Use case: photorealistic-natural.\nAsset type: Indian catering menu catalog photograph, landscape 3:2 composition.\nPrimary request: mix sabzi in one LARGE rectangular brushed stainless-steel gastronorm buffet pan.\nSubject: a generous vegan mixed vegetable curry with clearly recognizable green peas, potato chunks, green beans, bell pepper pieces and onions, coated in a tomato-based sabzi-spiced curry. Natural distinct vegetable shapes with appetizing warm tomato sauce; no dairy ingredients or garnish.\nScene/backdrop: clean neutral buffet table, uncluttered softly blurred neutral background.\nComposition/framing: 45-degree slightly overhead view; the rectangular pan fills most of the frame with its brushed steel rim visible on all sides. Food is centered and remains recognizable under common website card crops. Large catering quantity, not a single portion.\nLighting/mood: warm, soft natural light, appetizing realistic food photography, believable vegetable texture and gentle metal reflections.\nConstraints: one main gastronorm pan; no people, hands, text, letters, branding, logos, watermarks, single-portion plates, or utensils obscuring the food. No cream, yoghurt, paneer or other dairy.",
+      "file": "public/images/dishes/buffet/mix-sabzi.png",
+      "source": "C:/Users/KhaibarKarimi/.codex/generated_images/01a1df1f-ad31-7540-99be-1f6aa2515e82/exec-134fbed1-b1f3-42a3-8dac-6936859836b1.png",
+      "width": 1536,
+      "height": 1024,
+      "visualReview": {
+        "passed": true,
+        "observations": "Peas, potato chunks, green beans, peppers and onions in tomato curry; no visible dairy; large steel buffet pan."
+      }
+    },
+    {
+      "slug": "daal-aaloo-korma",
+      "prompt": "Use case: photorealistic-natural.\nAsset type: Indian catering menu catalog photograph, landscape 3:2 composition.\nPrimary request: daal aaloo korma in one LARGE rectangular brushed stainless-steel gastronorm buffet pan.\nSubject: yellow lentils with clearly recognizable potato chunks in a mild yellow-golden curry. A generous vegan catering preparation; visible soft cooked yellow lentils, tender potato surfaces and realistic mild sauce. No cream or yoghurt, no dairy garnish. Rice need not be shown.\nScene/backdrop: clean neutral buffet table, uncluttered softly blurred neutral background.\nComposition/framing: 45-degree slightly overhead view; the rectangular pan fills most of the frame with its brushed steel rim visible on all sides. Food is centered and remains recognizable under common website card crops. Large catering quantity, not a single portion.\nLighting/mood: warm, soft natural light, appetizing realistic food photography, believable lentil and potato texture and gentle metal reflections.\nConstraints: one main gastronorm pan; no people, hands, text, letters, branding, logos, watermarks, single-portion plates, or utensils obscuring the food. No white cream swirls, yoghurt, paneer, meat or other dairy.",
+      "file": "public/images/dishes/buffet/daal-aaloo-korma.png",
+      "source": "C:/Users/KhaibarKarimi/.codex/generated_images/01a1df1f-ad31-7540-99be-1f6aa2515e82/exec-9ec8dc72-a05e-439c-8cc2-1c785ded198e.png",
+      "width": 1536,
+      "height": 1024,
+      "visualReview": {
+        "passed": true,
+        "observations": "Yellow lentils and potato chunks in mild golden curry; no cream/yoghurt garnish; large steel buffet pan."
+      }
+    },
+    {
+      "slug": "vegetarische-biryani",
+      "prompt": "Use case: photorealistic-natural.\nAsset type: Indian catering menu catalog photograph, landscape 3:2 composition.\nPrimary request: vegetarian biryani in one LARGE rectangular brushed stainless-steel gastronorm buffet pan, accompanied by daal sauce.\nSubject: the main pan is generously filled with long-grain SELA spiced rice, fluffy separate elongated rice grains, golden warm spices and clearly recognizable potato chunks. This is vegetarian biryani, not a curry and not plain white rice. A small stainless-steel service pan of yellow lentil daal sauce may sit farther behind the main pan as the accompaniment; the main rice pan remains visually dominant.\nScene/backdrop: clean neutral buffet table, uncluttered softly blurred neutral background.\nComposition/framing: 45-degree slightly overhead view; the large rectangular rice pan fills most of the frame with its brushed steel rim visible on all sides. Rice and potatoes centered, recognizable under common website card crops. A large catering quantity, not a single portion.\nLighting/mood: warm, soft natural light, appetizing realistic food photography, distinct natural rice texture and gentle metal reflections.\nConstraints: no people, hands, text, letters, branding, logos, watermarks, single-portion plates, or utensils obscuring the food. No meat, fish, eggs or orange curry covering the rice. Do not make the daal accompaniment the main subject.",
+      "file": "public/images/dishes/buffet/vegetarische-biryani.png",
+      "source": "C:/Users/KhaibarKarimi/.codex/generated_images/01a1df1f-ad31-7540-99be-1f6aa2515e82/exec-e89bcdbf-6351-4c09-9d99-09e7d702facb.png",
+      "width": 1536,
+      "height": 1024,
+      "visualReview": {
+        "passed": true,
+        "observations": "Long separate spiced rice grains and potato chunks dominate the main steel pan; small daal sauce pan in background."
+      }
+    },
+    {
+      "slug": "samosa-chaat",
+      "prompt": "Use case: photorealistic-natural.\nAsset type: Indian catering menu catalog photograph, landscape 3:2 composition.\nPrimary request: samosa chaat in one LARGE rectangular brushed stainless-steel gastronorm buffet pan.\nSubject: a generous catering pan of assembled samosa chaat: broken open crisp golden samosa pastry with visible potato and green pea filling, served throughout the pan with yellow lentil curry and a modest drizzle of white yoghurt. The broken pastry pieces, exposed potato-pea filling, yellow lentil sauce and yoghurt must all be recognizable together as a composed chaat. It must NOT be a tray of intact plain triangular samosas. Keep natural crispy irregular pastry texture with some pieces partially coated in lentil curry.\nScene/backdrop: clean neutral buffet table, uncluttered softly blurred neutral background.\nComposition/framing: 45-degree slightly overhead view; the rectangular pan fills most of the frame with its brushed steel rim visible on all sides. Food centered, recognizable under common website card crops. Large catering quantity, not a single portion.\nLighting/mood: warm, soft natural light, appetizing realistic food photography, believable pastry and lentil textures and gentle metal reflections.\nConstraints: one main gastronorm pan; no people, hands, text, letters, branding, logos, watermarks, single-portion plates, or utensils obscuring the food. No meat. No display of only whole unbroken samosas.",
+      "file": "public/images/dishes/buffet/samosa-chaat.png",
+      "source": "C:/Users/KhaibarKarimi/.codex/generated_images/01a1df1f-ad31-7540-99be-1f6aa2515e82/exec-42605410-3c7c-4365-971c-0e03694e3d34.png",
+      "width": 1536,
+      "height": 1024,
+      "visualReview": {
+        "passed": true,
+        "observations": "Broken crisp pastry with exposed potato-pea filling, yellow lentil curry and white yoghurt; not a plain whole-samosa tray."
+      }
+    }
+  ]
+}

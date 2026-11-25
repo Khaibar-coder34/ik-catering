@@ -18,8 +18,8 @@ De bedrijfsgegevens en werkwijze zijn op 24 november 2026 door de eigenaar aange
 | Aanvraaggrenzen | `catering-settings.json` | Minimaal 15 personen, minimaal twee Amsterdam-kalenderdagen vooraf. Geen bedrijfsmatig maximum ingesteld |
 | Betalen en annuleren | `content.json` → `quote.conditions` | Aanbetaling meestal 50%; annuleren minimaal 24 uur vóór de afgesproken catering: volledige aanbetaling terug; later: helft van de betaalde aanbetaling terug |
 | Socialmedia | `socials` | Lege lijst; alleen echte profiel-URL's toevoegen |
-| Menu | `src/data/categories.json`, `src/data/dishes.json` | Negen ingevulde startgerechten, drie per categorie: hoofdgerechten, bijgerechten en nagerechten. Direct zichtbaar en selecteerbaar; omschrijvingen kunnen worden aangepast aan de eigen bereiding |
-| Eigen fotografie | `public/images/` + bijbehorende inhoud | Illustratieve, gedocumenteerde stockbeelden aanwezig |
+| Menu | `src/data/categories.json`, `src/data/dishes.json` | Veertien gerechten van de eigenaar in vier categorieën, inclusief Biryani Gerechten. Mix Sabzi één keer vegan. Categorieteksten via `description`; uitleg via `_comment` |
+| Fotografie | `public/images/` + bijbehorende inhoud | Veertien AI-gegenereerde buffetbeelden in `dishes/buffet/`; bestaande sfeerfoto's behouden. Prompts en bestanden gedocumenteerd in ASSETS.md |
 | Definitief logo | `public/images/branding/indiase-keuken-logo.png` | Origineel aangeleverd logo in header en footer; overige foto's behouden |
 | Gerechtlabels | `dishes.json` → `type`, `labels`; `dish-labels.json` | Standaard dieet-/gerechtlabel plus maximaal drie eigen labels; bestaande gerechten blijven door de eigenaar beheerd |
 | Privacypraktijk | Privacytekst in `src/data/content.json`, Resend en mailboxbeheer | Gebaseerd op bevestigde werkwijze; concrete bewaartermijnen voor mailarchief/WhatsApp nog open |

@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "generated_on": "2026-11-25",
+  "generator": "Built-in image_gen.imagegen",
+  "method": "Each asset was generated in one separate built-in tool call; no CLI, stock image or placeholder fallback was used.",
+  "description_nl": "AI-gegenereerde illustratieve gerechtfoto's voor de cateringwebsite. Dit zijn geen foto's van werkelijk geleverde gerechten.",
+  "shared_style_prompt": "Generate exactly one photorealistic professional catering-catalog food photograph, landscape 3:2 composition. Show one LARGE rectangular brushed stainless-steel gastronorm buffet pan of the named dish, photographed from a 45-degree slightly overhead angle, pan rim clearly visible, generous catering quantity. Food dominates the frame and remains legible in a central crop; include the complete main food area inside the frame with modest background. Consistent warm natural soft light, neutral clean buffet-table background, premium realistic food textures and appetizing color, real photographic camera optics. No people, hands, text, letters, logos, branding, watermarks, collages, split panels, labels, individual plated portions, or utensils obscuring food. Do not create an isolated cutout. No stock-photo-style decorative props competing with the main pan.",
+  "assets": [
+    {
+      "slug": "butter-chicken",
+      "title": "Butter chicken",
+      "workspace_path": "public/images/dishes/buffet/butter-chicken.png",
+      "public_url": "/images/dishes/buffet/butter-chicken.png",
+      "original_generated_path": "C:/Users/KhaibarKarimi/.codex/generated_images/01a1ebb0-1c07-7ea2-9880-8c38dfb335f8/exec-664ba11d-6514-400c-82a0-902832eef463.png",
+      "format": "png",
+      "width": 1536,
+      "height": 1024,
+      "transparent_background": false,
+      "prompt": "Generate exactly one photorealistic professional catering-catalog food photograph, landscape 3:2 composition. Show one LARGE rectangular brushed stainless-steel gastronorm buffet pan of the named dish, photographed from a 45-degree slightly overhead angle, pan rim clearly visible, generous catering quantity. Food dominates the frame and remains legible in a central crop; include the complete main food area inside the frame with modest background. Consistent warm natural soft light, neutral clean buffet-table background, premium realistic food textures and appetizing color, real photographic camera optics. No people, hands, text, letters, logos, branding, watermarks, collages, split panels, labels, individual plated portions, or utensils obscuring food. Do not create an isolated cutout. No stock-photo-style decorative props competing with the main pan.\nDISH: Butter chicken using this specific recipe: tandoor-roasted marinated chicken pieces in a rich orange tandoori butter curry. Ingredients include walnuts and cashews blended into the curry; do not show excessive whole-nut garnish. Show appetizing substantial chicken pieces with subtle tandoor roasting marks in the silky orange curry, lightly finished with a restrained cream swirl and a few fresh coriander leaves. The full large rectangular pan contains this single chicken dish.",
+      "visual_review": "Visueel gecontroleerd: grote rechthoekige RVS-buffetbak met oranje butter curry, herkenbare geroosterde kip en bescheiden room/koriander; geen overmatige hele noten."
+    },
+    {
+      "slug": "chicken-korma",
+      "title": "Chicken korma",
+      "workspace_path": "public/images/dishes/buffet/chicken-korma.png",
+      "public_url": "/images/dishes/buffet/chicken-korma.png",
+      "original_generated_path": "C:/Users/KhaibarKarimi/.codex/generated_images/01a1ebb0-1c07-7ea2-9880-8c38dfb335f8/exec-e1293df0-c06e-431c-8a91-ff7a51348a82.png",
+      "format": "png",
+      "width": 1536,
+      "height": 1024,
+      "transparent_background": false,
+      "prompt": "Generate exactly one photorealistic professional catering-catalog food photograph, landscape 3:2 composition. Show one LARGE rectangular brushed stainless-steel gastronorm buffet pan of the named dish, photographed from a 45-degree slightly overhead angle, pan rim clearly visible, generous catering quantity. Food dominates the frame and remains legible in a central crop; include the complete main food area inside the frame with modest background. Consistent warm natural soft light, neutral clean buffet-table background, premium realistic food textures and appetizing color, real photographic camera optics. No people, hands, text, letters, logos, branding, watermarks, collages, split panels, labels, individual plated portions, or utensils obscuring food. Do not create an isolated cutout. No stock-photo-style decorative props competing with the main pan.\nDISH: Chicken korma according to this caterer's specific recipe, which is different from conventional white korma: spiced chicken AND YELLOW LENTILS in a tomato curry with mixed curry spices. It is essential that both distinct chicken pieces and many recognizable cooked yellow lentils are clearly visible, in an orange-yellow tomato curry. DO NOT depict standard white, ivory, cream-colored or cashew-only korma. Moderately thick, rich, warm orange-yellow curry, abundant lentils and chicken, very restrained fresh coriander garnish. Fill the large rectangular pan with this dish.",
+      "visual_review": "Visueel gecontroleerd: grote rechthoekige RVS-buffetbak met duidelijke stukken kip EN zichtbare gele linzen in oranje-gele tomatencurry; geen witte korma."
+    },
+    {
+      "slug": "chicken-seekh-kebap",
+      "title": "Chicken seekh kebap",
+      "workspace_path": "public/images/dishes/buffet/chicken-seekh-kebap.png",
+      "public_url": "/images/dishes/buffet/chicken-seekh-kebap.png",
+      "original_generated_path": "C:/Users/KhaibarKarimi/.codex/generated_images/01a1ebb0-1c07-7ea2-9880-8c38dfb335f8/exec-274c3cd2-a15d-4eb3-8e4e-4bd0e8e0147e.png",
+      "format": "png",
+      "width": 1536,
+      "height": 1024,
+      "transparent_background": false,
+      "prompt": "Generate exactly one photorealistic professional catering-catalog food photograph, landscape 3:2 composition. Show one LARGE rectangular brushed stainless-steel gastronorm buffet pan of the named dish, photographed from a 45-degree slightly overhead angle, pan rim clearly visible, generous catering quantity. Food dominates the frame and remains legible in a central crop; include the complete main food area inside the frame with modest background. Consistent warm natural soft light, neutral clean buffet-table background, premium realistic food textures and appetizing color, real photographic camera optics. No people, hands, text, letters, logos, branding, watermarks, collages, split panels, labels, individual plated portions, or utensils obscuring food. Do not create an isolated cutout. No stock-photo-style decorative props competing with the main pan.\nDISH: Chicken seekh kebap: tandoor-roasted minced CHICKEN kebabs formed into long skewer-shaped cylinders, then served in a mildly spiced curry. Show several clearly recognizable cylindrical minced-chicken seekh kebabs, textured and browned with tandoor roasting marks, generously nestled in and partly above a warm orange-brown mild curry. No metal or wooden skewers should obscure the food. The visible hero must unmistakably be long seekh kebabs, not whole chicken pieces or meatballs. Do not add rice inside this pan; omit side dishes entirely. A few fine coriander leaves are allowed.",
+      "visual_review": "Visueel gecontroleerd: grote rechthoekige RVS-buffetbak met herkenbare langwerpige seekh kebabs met geroosterde buitenkant in milde curry; geen rijst in de bak."
+    },
+    {
+      "slug": "lamb-tikka-masala",
+      "title": "Lamb tikka masala",
+      "workspace_path": "public/images/dishes/buffet/lamb-tikka-masala.png",
+      "public_url": "/images/dishes/buffet/lamb-tikka-masala.png",
+      "original_generated_path": "C:/Users/KhaibarKarimi/.codex/generated_images/01a1ebb0-1c07-7ea2-9880-8c38dfb335f8/exec-bc63ccdb-471f-4bfb-baea-84a8f0cfa95b.png",
+      "format": "png",
+      "width": 1536,
+      "height": 1024,
+      "transparent_background": false,
+      "prompt": "Generate exactly one photorealistic professional catering-catalog food photograph, landscape 3:2 composition. Show one LARGE rectangular brushed stainless-steel gastronorm buffet pan of the named dish, photographed from a 45-degree slightly overhead angle, pan rim clearly visible, generous catering quantity. Food dominates the frame and remains legible in a central crop; include the complete main food area inside the frame with modest background. Consistent warm natural soft light, neutral clean buffet-table background, premium realistic food textures and appetizing color, real photographic camera optics. No people, hands, text, letters, logos, branding, watermarks, collages, split panels, labels, individual plated portions, or utensils obscuring food. Do not create an isolated cutout. No stock-photo-style decorative props competing with the main pan.\nDISH: Lamb tikka masala: substantial grilled LAMB chunks in a thick spiced tomato masala curry. Show natural lamb meat texture, browned grilled edges and some visible char on the lamb cubes, coated in a deep orange-red tomato masala curry with a visibly thick rich consistency, delicate flecks of curry spices and only sparse fresh coriander. The large rectangular pan contains only the lamb curry, no rice, vegetables, bread or separate sides.",
+      "visual_review": "Visueel gecontroleerd: grote rechthoekige RVS-buffetbak met gebraden/gegrilde lamsstukken en donkere grillrandjes in dikke oranje-rode tomatenmasala."
+    }
+  ],
+  "unused_variants": [
+    {
+      "slug": "chicken-biryani",
+      "title": "Chicken biryani",
+      "original_generated_path": "C:/Users/KhaibarKarimi/.codex/generated_images/01a1ebb0-1c07-7ea2-9880-8c38dfb335f8/exec-bc47e7a3-fd32-46d8-9624-38cb20aad263.png",
+      "format": "png",
+      "width": 1536,
+      "height": 1024,
+      "transparent_background": false,
+      "prompt": "Generate exactly one photorealistic professional catering-catalog food photograph, landscape 3:2 composition. Show one LARGE rectangular brushed stainless-steel gastronorm buffet pan of the named dish, photographed from a 45-degree slightly overhead angle, pan rim clearly visible, generous catering quantity. Food dominates the frame and remains legible in a central crop; include the complete main food area inside the frame with modest background. Consistent warm natural soft light, neutral clean buffet-table background, premium realistic food textures and appetizing color, real photographic camera optics. No people, hands, text, letters, logos, branding, watermarks, collages, split panels, labels, individual plated portions, or utensils obscuring food. Do not create an isolated cutout. No stock-photo-style decorative props competing with the main pan.\nDISH: Chicken biryani using long-grain SELA rice, seasoned with biryani spices, with clearly visible tandoori-marinated chicken pieces. Show distinctive long separated slender grains of sela rice in a natural mixture of golden-orange, warm yellow and ivory, with abundant recognizable tandoori-marinated roasted chicken pieces integrated into the rice and visible on top. Subtle browned onion strands and a little coriander allowed. It must look like a generous real biryani buffet pan, moist and fluffy separated rice, not curry poured over rice, not short-grain rice and not a single plated portion.",
+      "visual_review": "Visueel gecontroleerd: grote rechthoekige RVS-buffetbak met afzonderlijke lange rijstkorrels en duidelijke tandoori-gemarineerde kipstukken; geen curry over de rijst.",
+      "status": "unused",
+      "note_nl": "Niet geselecteerde variant. De definitieve chicken-biryani.png en bijbehorende prompt zijn door de hoofdtaak gekozen en apart geregistreerd."
+    }
+  ]
+}

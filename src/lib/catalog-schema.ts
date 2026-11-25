@@ -3,16 +3,27 @@ import { z } from "zod";
 const identifier = z.string().min(1).max(100).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
 const imagePath = z.string().max(300).refine((value) => value === "" || /^\/images\/[a-zA-Z0-9/_-]+\.(?:webp|avif|png|jpe?g|svg)$/.test(value), "Gebruik een lokaal afbeeldingspad onder /images/.");
 
+// JSON ondersteunt geen //-comments. Gebruik _comment voor hulp aan de redacteur;
+// deze tekst wordt bij het inlezen verwijderd en nooit aan bezoekers doorgegeven.
+const editorComment = z.string().max(2000).optional();
+function stripEditorComment<T extends { _comment?: string }>(value: T): Omit<T, "_comment"> {
+  const publicData = { ...value };
+  delete publicData._comment;
+  return publicData;
+}
+
 export const categorySchema = z.object({
+  _comment: editorComment,
   id: identifier,
   slug: identifier,
   name: z.string().min(1).max(100),
   description: z.string().max(500),
   sortOrder: z.number().int().nonnegative(),
   isPublished: z.boolean(),
-}).strict();
+}).strict().transform(stripEditorComment);
 
 export const dishSchema = z.object({
+  _comment: editorComment,
   id: identifier,
   slug: identifier,
   name: z.string().min(1).max(100),
@@ -24,7 +35,7 @@ export const dishSchema = z.object({
   sortOrder: z.number().int().nonnegative(),
   isPublished: z.boolean(),
   allergens: z.array(z.string().min(1).max(100)).max(30).optional(),
-}).strict();
+}).strict().transform(stripEditorComment);
 
 export const customizationSchema = z.object({
   allowedDishIds: z.array(identifier).min(1).max(100),

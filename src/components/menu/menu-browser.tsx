@@ -23,10 +23,11 @@ export function MenuBrowser({ catalog }: { catalog: Catalog }) {
   return <div className="menu-browser">
     <DemoNotice isDemo={catalog.isDemo} />
     {!catalog.isDemo && catalog.dishes.length > 0 && <p className="menu-photo-note">{copy.imageNote}</p>}
+    {/* Kop en toelichting komen uit categories.json; wijzig daar name en description. */}
     {catalog.categories.map((category) => {
       const dishes = catalog.dishes.filter((dish) => dish.categoryId === category.id);
       return <section className="menu-category" aria-labelledby={`menu-${category.id}`} key={category.id}>
-        <div className="menu-category-heading"><h2 id={`menu-${category.id}`}>{category.name}</h2></div>
+        <div className="menu-category-heading"><h2 id={`menu-${category.id}`}>{category.name}</h2>{category.description && <p className="menu-category-description">{category.description}</p>}</div>
         {dishes.length > 0 ? <div className="product-grid">{dishes.map((dish) => <DishCard key={dish.id} dish={dish} />)}</div> : <p className="menu-category-empty">{copy.emptyCategory}</p>}
       </section>;
     })}
