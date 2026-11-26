@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import { useState } from "react";
 import type { Catalog } from "@/src/lib/catalog-schema";
 import { useSelection } from "@/src/components/selection-provider";
@@ -30,7 +30,7 @@ export function QuoteWizard({ catalog }: { catalog: Catalog }) {
       <CompactMenuSelection catalog={catalog} />
       <div className="quote-actions">
         <p className="form-step-summary" aria-live="polite">{summary}</p>
-        <button className="button button-primary" type="button" onClick={() => goTo(2)}>{copy.next}<ArrowRight size={17} aria-hidden="true" /></button>
+        <button className="button button-primary" type="button" onClick={() => goTo(2)}>{copy.next}</button>
       </div>
     </section>
     <section className="quote-step" hidden={step !== 2} style={step !== 2 ? { display: "none" } : undefined} aria-labelledby="quote-details-title">

@@ -7,5 +7,16 @@ import { pageMetadata } from "@/src/lib/metadata";
 const copy = content.quote;
 export const metadata = pageMetadata(copy.metaTitle, copy.metaDescription, "/offerte");
 export default function QuotePage() {
-  return <><PageHero title={copy.title} description={copy.description} /><section className="section section-after-heading"><div className="container quote-container"><details className="quote-conditions"><summary>{copy.conditionsTitle}</summary>{copy.conditions.map(condition => <p key={condition.title}><strong>{condition.title}. </strong>{condition.text}</p>)}</details><QuoteWizard catalog={getCatalog()} /></div></section></>;
+  return <>
+    <PageHero title={copy.title} description={copy.description} className="quote-container" />
+    <section className="section section-after-heading">
+      <div className="container quote-container">
+        <details className="quote-conditions">
+          <summary>{copy.conditionsTitle}</summary>
+          {copy.conditions.map(condition => <p key={condition.title}><strong>{condition.title}. </strong>{condition.text}</p>)}
+        </details>
+        <QuoteWizard catalog={getCatalog()} />
+      </div>
+    </section>
+  </>;
 }

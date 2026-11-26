@@ -200,6 +200,8 @@ Open `src/data/content.json` en kies de juiste groep:
 
 De groepen `home`, `menu`, `about`, `b2b`, `quote` en `privacy` hebben ook `metaTitle` en `metaDescription` voor browser- en zoekmachinegegevens. Houd deze passend bij de inhoud. Een `\n` in een JSON-tekst is een regelafbreking, bijvoorbeeld `"Goed eten.\nSamen genieten."`.
 
+De introductie onder de menukop is bewust weggelaten: `menu.description` is `""`. Een lege beschrijving toont geen alinea en reserveert daarvoor geen ruimte. De afzonderlijke `metaDescription` voor zoekmachines blijft ingevuld.
+
 De contactformulieren zelf staan op Over ons (particulier) en B2B (zakelijk). Hun woorden beheer je in `forms-content.json`. Laat de technische waarden `private`, `business`, `yes` en `no` staan; je kunt de zichtbare labels wijzigen. Behoud ook de invultekens `{count}` en `{field}` in meldingen: de website vervangt die door aantallen of veldnamen.
 
 De minimumgroep is 15 personen en de voorbereidingstijd twee kalenderdagen in de tijdzone Europe/Amsterdam. Wijzig beide centraal in `catering-settings.json`. Dit is geen grens van precies 48 uur. Het datumveld ververst de ondergrens bij terugkeer naar de pagina en tijdens een lang geopende sessie; de server controleert de datum opnieuw. De aanvraag blijft vrijblijvend, ook wanneer het formulier geldig is.
@@ -217,6 +219,14 @@ De privacytekst bevat de werkelijke mailbox- en leveranciersverwerking. De verwi
 - `.env.local` en de Netlify-omgevingsvariabelen: technische instellingen en geheime sleutels. Zet die nooit in een publiek JSON-bestand of in GitHub.
 - `package.json`, `package-lock.json`, `next.config.ts`, `netlify.toml`: technische configuratie, geen website-inhoud.
 - `.next/` en `node_modules/`: automatisch aangemaakte bestanden; niet handmatig bewerken.
+
+## Vormgeving en lettertype
+
+De website gebruikt overal **Source Sans 3**: koppen, gewone tekst, navigatie en formulieren. Het lettertype staat lokaal in `public/fonts/` en wordt ingesteld in `app/layout.tsx`. De bron en licentie staan in `ASSETS.md`.
+
+De gedeelde vormgeving staat in `app/globals.css`. Bovenaan vind je de kleuren, hoekafrondingen en sectieafstand. De commentblokken verdelen het bestand in navigatie, pagina-indeling, menukaarten, formulieren en schermbreedtes. Pas bij een stijlwijziging deze gedeelde regels aan om verschillen tussen pagina's te voorkomen. De gewone tekst is 18 px op desktop en 17 px op mobiel; invoervelden blijven minstens 16 px.
+
+De categorieknoppen boven het menu worden automatisch opgebouwd uit `categories.json`. Namen, volgorde en zichtbaarheid blijven dus op dezelfde plek beheerd. `menu-content.json` → `categoryNavigationLabel` is de naam van deze navigatie voor schermlezers. De kaartverdeling blijft 60% foto, 20% naam met labels en 20% beschrijving; langere inhoud mag de kaart hoger maken.
 
 ## Opslaan, bekijken en publiceren
 

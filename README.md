@@ -1,6 +1,6 @@
 # Indiase Keuken Catering
 
-Nederlandstalige website voor Indiase catering aan particulieren en bedrijven in Utrecht en omgeving. De applicatie gebruikt Next.js App Router, TypeScript strict, Tailwind CSS, Motion, Zod, Lucide en de officiële Resend SDK. De inhoud staat in JSON in deze repository; er is geen database, accountomgeving, CMS of betaalfunctie. De vormgeving gebruikt lokaal gehoste Manrope voor koppen en gewone tekst.
+Nederlandstalige website voor Indiase catering aan particulieren en bedrijven in Utrecht en omgeving. De applicatie gebruikt Next.js App Router, TypeScript strict, Tailwind CSS, Motion, Zod, Lucide en de officiële Resend SDK. De inhoud staat in JSON in deze repository; er is geen database, accountomgeving, CMS of betaalfunctie. De vormgeving gebruikt lokaal gehoste Source Sans 3 voor koppen, gewone tekst, navigatie en formulieren. Gedeelde stijlen staan in `app/globals.css`; de indeling past zich aan desktop, tablet en mobiel aan.
 
 **Gerechten, bedrijfsteksten of contactgegevens aanpassen?** Begin bij [CONTENT_GUIDE.md](CONTENT_GUIDE.md). Daar staat per onderdeel welk JSON-bestand en welk veld je kunt wijzigen, inclusief een compleet gerechtvoorbeeld en instructies voor foto's. Voor dagelijks inhoudsbeheer hoef je geen applicatiecode aan te passen.
 

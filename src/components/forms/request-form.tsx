@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Check, LoaderCircle } from "lucide-react";
+import { Check, LoaderCircle } from "lucide-react";
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore, type FormEvent } from "react";
 import { requestSchema, validationErrors, type Audience } from "@/src/lib/validation";
 import { Turnstile } from "@/src/components/forms/turnstile";
@@ -105,7 +105,7 @@ export function RequestForm(props: RequestFormProps) {
     {kind === "quote" && <p>{copy.successQuote}</p>}
     <p>{success.confirmationSent ? copy.confirmationSent : copy.confirmationFailed}</p>
     <p className="request-reference">{copy.referenceLabel}<br /><strong>{success.reference}</strong></p>
-    <Link className="button button-primary" href="/">{copy.backHome}<ArrowRight size={16} aria-hidden="true" /></Link>
+    <Link className="button button-primary" href="/">{copy.backHome}</Link>
   </div>;
 
   return <form className="form-panel request-form" onSubmit={onSubmit} noValidate aria-busy={pending} onChange={(event) => {
@@ -155,9 +155,9 @@ export function RequestForm(props: RequestFormProps) {
     {active && <Turnstile onToken={onToken} resetKey={verificationReset} />}
     {status && <div className="form-status form-status-error" role="alert">{status}</div>}
     <div className="quote-actions">
-      {kind === "quote" && <button className="button button-secondary" type="button" disabled={pending} onClick={() => { setToken(""); setVerificationReset((current) => current + 1); props.onBack(); }}><ArrowLeft size={17} aria-hidden="true" />{copy.back}</button>}
+      {kind === "quote" && <button className="button button-secondary" type="button" disabled={pending} onClick={() => { setToken(""); setVerificationReset((current) => current + 1); props.onBack(); }}>{copy.back}</button>}
       <button type="submit" className="button button-primary form-submit" disabled={pending}>
-        {pending ? <><LoaderCircle size={18} className="loading-icon" aria-hidden="true" />{copy.submitting}</> : <>{copy.submit}<ArrowRight size={17} aria-hidden="true" /></>}
+        {pending ? <><LoaderCircle size={18} className="loading-icon" aria-hidden="true" />{copy.submitting}</> : copy.submit}
       </button>
     </div>
     {kind === "quote" && <p className="form-privacy-note">{copy.privacyQuoteHelp}</p>}

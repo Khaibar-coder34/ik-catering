@@ -127,6 +127,12 @@ test("B2B toont de bevestigde contactgegevens", async ({ page }) => {
 test("het menu toont de ingestelde categorieën, toelichtingen en gerechtkaarten", async ({ page }, testInfo) => {
   await page.goto("/menu");
   await expect(page.locator(".menu-category h2")).toHaveText(categories);
+  const categoryNavigation = page.getByRole("navigation", { name: "Gerechtcategorieën" });
+  await expect(categoryNavigation.getByRole("link")).toHaveText(categories);
+  const lastCategory = expectedCatalog.categories.at(-1)!;
+  await categoryNavigation.getByRole("link", { name: lastCategory.name, exact: true }).click();
+  await expect(page).toHaveURL(new RegExp(`#menu-${lastCategory.id}$`));
+  await expect(page.locator(`#menu-${lastCategory.id}`)).toBeInViewport();
   for (const category of expectedCatalog.categories) {
     const section = page.getByRole("region", { name: category.name, exact: true });
     if (category.description) await expect(section.locator(".menu-category-description")).toHaveText(category.description);
@@ -374,7 +380,7 @@ test("mobiele navigatie werkt en pagina's passen op smalle schermen", async ({ p
   await page.locator("#mobile-navigation").getByRole("link", { name: "Menu", exact: true }).click();
   await expect(page).toHaveURL(/\/menu$/);
   await expect(page.getByRole("button", { name: site.ui.menuOpen, exact: true })).toHaveAttribute("aria-expanded", "false");
-  for (const width of [390, 320]) {
+  for (const width of [390, 320, 768, 1024]) {
     await page.setViewportSize({ width, height: 844 });
     for (const path of paths) {
       await page.goto(path);

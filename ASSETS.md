@@ -25,7 +25,7 @@ De geselecteerde originelen staan als PNG van 1536×1024 in `public/images/dishe
 | `fruit-chaat.png` | Fruit Chaat |
 | `gulab-jamun.png` | Gulab jamun |
 
-De volledige gebruikte prompts, oorspronkelijke uitvoerpaden en projectbestemmingen staan in [buffet-meat-prompts.json](docs/buffet-meat-prompts.json), [buffet-vegetable-prompts.json](docs/buffet-vegetable-prompts.json) en [buffet-additional-prompts.json](docs/buffet-additional-prompts.json). Een extra, niet geselecteerde biryani-variant is uitsluitend in de promptregistratie vermeld en wordt niet door de website gebruikt. De menupagina vermeldt dat het AI-gegenereerde sfeerbeelden zijn; die toelichting staat in `menu-content.json` → `imageNote`.
+De volledige gebruikte prompts, oorspronkelijke uitvoerpaden en projectbestemmingen staan in [buffet-meat-prompts.json](docs/buffet-meat-prompts.json), [buffet-vegetable-prompts.json](docs/buffet-vegetable-prompts.json) en [buffet-additional-prompts.json](docs/buffet-additional-prompts.json). Een extra, niet geselecteerde biryani-variant is uitsluitend in de promptregistratie vermeld en wordt niet door de website gebruikt. Een optionele fototoelichting staat in `menu-content.json` → `imageNote`; dit veld is momenteel leeg en wordt dan niet getoond.
 
 De oorspronkelijke sfeerbeelden zijn gecontroleerd op 15 november 2026 en vallen onder de **Unsplash License**, niet onder Unsplash+. De negen gerechtfoto's zijn toegevoegd en gecontroleerd op 18 november 2026; hun bronnen en licenties staan hieronder afzonderlijk vermeld.
 
@@ -85,21 +85,25 @@ Optimalisatie: Sharp, automatische EXIF-rotatie, breedte 900 px zonder opschalen
 
 ## Lettertypen
 
-De huidige website gebruikt **Manrope** voor zowel koppen als gewone tekst. De eerder opgenomen Cormorant Garamond-bestanden blijven met hun licentie in de repository aanwezig, maar worden niet meer als actief websitelettertype ingeladen.
+De huidige website gebruikt **Source Sans 3** voor koppen, gewone tekst, navigatie en formulieren. Het variabele lettertype wordt lokaal geladen via `next/font/local`, met gewichten 400–700 en CSS-variabele `--font-body`. Bezoekers maken hiervoor geen verbinding met Google Fonts. Het bestand is op 26 november 2026 opgehaald, is 28.872 bytes groot en heeft een geldige WOFF2-header. De eerdere Manrope- en Cormorant Garamond-bestanden blijven met hun licenties bewaard, maar worden niet meer als actief websitelettertype ingeladen.
 
 | Bestand | Familie / bereik | Bron | Licentie |
 | --- | --- | --- | --- |
+| `public/fonts/source-sans-3-latin-variable.woff2` | Source Sans 3, normaal 400–700, Latin-subset | [Google Fonts-bron](https://github.com/google/fonts/tree/main/ofl/sourcesans3) | SIL Open Font License 1.1 |
 | `public/fonts/cormorant-garamond-latin-variable.woff2` | Cormorant Garamond, normaal 300–700 | [Google Fonts-bron](https://github.com/google/fonts/tree/main/ofl/cormorantgaramond) | SIL Open Font License 1.1 |
 | `public/fonts/cormorant-garamond-latin-italic-variable.woff2` | Cormorant Garamond, cursief 300–700 | [Google Fonts-bron](https://github.com/google/fonts/tree/main/ofl/cormorantgaramond) | SIL Open Font License 1.1 |
 | `public/fonts/manrope-latin-variable.woff2` | Manrope, normaal 200–800 | [Google Fonts-bron](https://github.com/google/fonts/tree/main/ofl/manrope) | SIL Open Font License 1.1 |
 
 WOFF2-bestanden zijn de Latin-subsets die de officiële Google Fonts CSS-service verstrekt. Downloadlocaties:
 
+- `https://fonts.gstatic.com/s/sourcesans3/v20/nwpStKy2OAdR1K-IwhWudF-R3w8aZQ.woff2` (actief; verstrekt door `https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400..700&display=swap`)
 - `https://fonts.gstatic.com/s/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2`
 - `https://fonts.gstatic.com/s/cormorantgaramond/v21/co3ZmX5slCNuHLi8bLeY9MK7whWMhyjYrEtImSo.woff2`
 - `https://fonts.gstatic.com/s/manrope/v23/xn7gYHE41ni1AdIRggexSg.woff2`
 
 Copyright Cormorant: © 2015 the Cormorant Project Authors. Copyright Manrope: © 2018 The Manrope Project Authors. Volledige originele licenties zijn meegeleverd als `public/fonts/OFL-CormorantGaramond.txt` en `public/fonts/OFL-Manrope.txt`. Behoud deze bestanden bij herdistributie. De bestanden zijn alleen gedownload; de fontsoftware is niet aangepast.
+
+Copyright Source Sans 3: © 2010–2020 Adobe, met de gereserveerde fontnaam “Source”. De volledige [officiële licentie](https://github.com/google/fonts/blob/main/ofl/sourcesans3/OFL.txt) staat ongewijzigd in `public/fonts/OFL-SourceSans3.txt`. Ook dit fontbestand is ongewijzigd overgenomen; bewaar de licentie bij herdistributie.
 
 ## Logo en iconen
 

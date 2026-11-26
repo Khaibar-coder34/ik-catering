@@ -7,7 +7,14 @@ import { getCatalog } from "@/src/lib/catalog";
 import { content, site, siteUrl } from "@/src/lib/site";
 import "./globals.css";
 
-const sans = localFont({ src: "../public/fonts/manrope-latin-variable.woff2", variable: "--font-manrope", display: "swap", weight: "200 800" });
+// Eén lokaal lettertype houdt koppen, tekst en formulieren overal consistent.
+const sans = localFont({
+  src: "../public/fonts/source-sans-3-latin-variable.woff2",
+  variable: "--font-body",
+  display: "swap",
+  weight: "400 700",
+  style: "normal",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
