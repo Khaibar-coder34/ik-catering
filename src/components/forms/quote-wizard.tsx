@@ -16,7 +16,11 @@ export function QuoteWizard({ catalog }: { catalog: Catalog }) {
 
   function goTo(next: 1 | 2) {
     setStep(next);
-    requestAnimationFrame(() => document.getElementById(next === 1 ? "quote-menu-title" : "quote-details-title")?.focus());
+    requestAnimationFrame(() => {
+      const heading = document.getElementById(next === 1 ? "quote-menu-title" : "quote-details-title");
+      heading?.focus({ preventScroll: true });
+      heading?.scrollIntoView({ block: "start", behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+    });
   }
 
   return <div className="quote-wizard">
@@ -28,7 +32,7 @@ export function QuoteWizard({ catalog }: { catalog: Catalog }) {
       <h2 id="quote-menu-title" tabIndex={-1}>{copy.menuStep}</h2>
       <p>{copy.menuIntro}</p>
       <CompactMenuSelection catalog={catalog} />
-      <div className="quote-actions">
+      <div className="quote-actions quote-selection-actions">
         <p className="form-step-summary" aria-live="polite">{summary}</p>
         <button className="button button-primary" type="button" onClick={() => goTo(2)}>{copy.next}</button>
       </div>

@@ -37,6 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="nl"
+      data-scroll-behavior="smooth"
       className={`${sans.variable} antialiased`}
     >
       <body>

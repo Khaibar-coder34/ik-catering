@@ -126,7 +126,7 @@ export function RequestForm(props: RequestFormProps) {
       <div className="form-grid">
         {field("name", { autocomplete: "name" })}
         {field("email", { type: "email", autocomplete: "email", maxLength: 254 })}
-        {field("phone", { type: "tel", autocomplete: "tel", maxLength: 40 })}
+        {field("phone", { type: "tel", autocomplete: "tel", maxLength: 40, full: kind === "contact" })}
         {kind === "quote" ? <>
           {field("city", { autocomplete: "address-level2" })}
           {field("people", { type: "number", min: String(cateringSettings.minPeople), hint: copy.minimumPeopleHint.replace("{minPeople}", String(cateringSettings.minPeople)) })}

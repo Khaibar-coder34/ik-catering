@@ -13,7 +13,7 @@ export const metadata = pageMetadata(copy.metaTitle, copy.metaDescription, "/");
 export default function Home() {
   return <>
     <section className="home-hero container">
-      <div className="hero-copy">
+      <Reveal className="hero-copy">
         <p className="eyebrow">{copy.eyebrow}</p>
         <h1>{copy.title}</h1>
         <p className="hero-description">{copy.description}</p>
@@ -22,10 +22,10 @@ export default function Home() {
           <Link href="/offerte" className="button button-outline">{site.quoteLabel}</Link>
         </div>
         <span className="hero-note">{copy.note}</span>
-      </div>
-      <figure className="hero-photo"><FoodImage src={copy.image} alt={copy.imageAlt} fill sizes="(max-width: 860px) 100vw, 50vw" preload /><figcaption>{copy.imageCaption}</figcaption></figure>
+      </Reveal>
+      <Reveal as="figure" className="hero-photo" delay={0.1}><FoodImage src={copy.image} alt={copy.imageAlt} fill sizes="(max-width: 860px) 100vw, 50vw" preload /><figcaption>{copy.imageCaption}</figcaption></Reveal>
     </section>
-    <section className="service-strip"><div className="container service-grid">{copy.services.map(item => { const Icon = icons[item.icon as keyof typeof icons]; return <div className="service-item" key={item.title}><Icon size={25} strokeWidth={1.5} aria-hidden="true" /><div><h2>{item.title}</h2><p>{item.text}</p></div></div>; })}</div></section>
+    <section className="service-strip"><div className="container service-grid">{copy.services.map((item, index) => { const Icon = icons[item.icon as keyof typeof icons]; return <Reveal className="service-item" delay={index * 0.07} key={item.title}><Icon size={25} strokeWidth={1.5} aria-hidden="true" /><div><h2>{item.title}</h2><p>{item.text}</p></div></Reveal>; })}</div></section>
     <section className="section container">
       <Reveal className="home-invitation">
         <div>

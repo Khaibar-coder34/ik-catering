@@ -228,6 +228,14 @@ De gedeelde vormgeving staat in `app/globals.css`. Bovenaan vind je de kleuren, 
 
 De categorieknoppen boven het menu worden automatisch opgebouwd uit `categories.json`. Namen, volgorde en zichtbaarheid blijven dus op dezelfde plek beheerd. `menu-content.json` → `categoryNavigationLabel` is de naam van deze navigatie voor schermlezers. De kaartverdeling blijft 60% foto, 20% naam met labels en 20% beschrijving; langere inhoud mag de kaart hoger maken.
 
+## Animaties aanpassen
+
+De bewegingen zijn kort en eenmalig bij het in beeld komen. `src/components/reveal.tsx` regelt het verschijnen van koppen, introducties en gerechtkaarten. Met `delay` kan een volgende kaart iets later verschijnen. De inhoud is ook zonder JavaScript zichtbaar.
+
+In `app/globals.css` staan `--duration-fast`, `--duration-ui` en `--ease-out` voor knoppen, onderstrepingen, geselecteerde kaarten en focus. Het blok met hovereffecten geldt alleen voor een muis of vergelijkbare aanwijzer. `step-enter` verzorgt de overgang tussen offertestappen; de formulieren blijven aanwezig zodat ingevulde gegevens behouden blijven. `src/components/header.tsx` regelt het openen en sluiten van het mobiele menu. Gesloten links zijn niet bereikbaar met het toetsenbord.
+
+De instelling **minder beweging** van het apparaat wordt gerespecteerd: verschijnanimaties, verschuivingen en beeldzoom worden uitgeschakeld; het mobiele menu opent dan direct. Er zijn geen doorlopende decoratieve animaties.
+
 ## Opslaan, bekijken en publiceren
 
 1. Bewerk de JSON en voeg eventuele afbeeldingen toe.

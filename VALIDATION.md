@@ -1,10 +1,10 @@
 # Oplevercontrole
 
-Gecontroleerd op 26 november 2026 met Node.js 24, Next.js 16.4.6 en Microsoft Edge op Windows. De vormgeving gebruikt nu één lokaal gehoste letterfamilie, Source Sans 3, met grotere tekst en consistente knoppen, kaarten en formulieren. Desktop, tablet en mobiel hebben passende kolommen en witruimte. De veertien gerechten, vier categorieën, foto's, bedrijfsgegevens en formulierwerking zijn behouden; Mix Sabzi blijft één keer vegan vermeld.
+Gecontroleerd op 26 november 2026 met Node.js 24, Next.js 16.4.6 en Microsoft Edge op Windows. De vormgeving gebruikt lokaal Source Sans 3, afgeronde knoppen, subtiele kaartschaduwen en een licht doorschijnende vaste header. Eenmalige verschijnanimaties, hovereffecten, het mobiele menu en offertestappen geven rustige beweging. De compacte witruimte, veertien gerechten, vier categorieën, foto's, bedrijfsgegevens en formulierwerking zijn behouden; Mix Sabzi blijft één keer vegan vermeld.
 
 ## Uitgevoerde controles
 
-Aanvullende controle op 26 november: de zin onder “Ons menu” is verwijderd en de afstanden onder de navigatie, tussen kop en inhoud en rond categoriekoppen zijn verkleind. Typecheck en diffcheck slagen. De menupagina is opnieuw visueel gecontroleerd op 1280 en 390 px: geen lege introductie-alinea, kop zichtbaar onder de header en geen horizontale overflow. De onderstaande volledige suite betreft de voorafgaande vormgevingsronde.
+De zin onder “Ons menu” blijft verwijderd. De kleinere afstanden onder de navigatie en rond koppen zijn behouden. De volledige suite is opnieuw uitgevoerd na het toevoegen van animaties. De interactieve preview is daarnaast bekeken op 1280 en 390 px met de normale bewegingsinstelling en met minder beweging.
 
 | Controle | Resultaat |
 | --- | --- |
@@ -12,12 +12,14 @@ Aanvullende controle op 26 november: de zin onder “Ons menu” is verwijderd e
 | `npm run typecheck` | Geslaagd |
 | `npm test` | 50 tests geslaagd, inclusief catalogus, niet-publieke redactienotities, centrale bedrijfsgegevens, minimumgroep, datumgrenzen en drie e-mailvarianten |
 | `npm run build` | Productiebuild geslaagd met Webpack; aparte `.next-e2e`-uitvoermap om de actieve preview te behouden |
-| Playwright | Alle 35 scenario's geslaagd met `E2E_CATALOG_DEMO=false` en de veertien gepubliceerde gerechten |
+| Playwright | Alle 37 scenario's geslaagd met `E2E_CATALOG_DEMO=false` en de veertien gepubliceerde gerechten |
 | Toegankelijkheid | Zes axe-scans zonder overtredingen van de geselecteerde WCAG A/AA-regels |
 | Schermbreedtes | Alle zes pagina's gecontroleerd op 320, 390, 768, 1024 en 1440 px zonder horizontale overflow; mobiele navigatie en offerte stap 2 ook in de browsersuite |
 | Kaartweergave | Veertien foto's geladen; labels zichtbaar en toegankelijk; verhoudingen 60/20/20 en geen afgeknipte inhoud op 320, 768 en 1280 px |
 | Visuele controle | Home, menu, B2B en offerteformulier beoordeeld op desktop en mobiel; lange naan-naam, label, beschrijving en buffetfoto volledig zichtbaar op 320 px |
 | Typografie en bediening | Lokaal Source Sans 3; gewone tekst 18 px op desktop en 17 px op mobiel, invoervelden 17 px; menuknop 44×44 px en ruimere actieknoppen |
+| Animaties | Mobiele navigatie, Escape/focusterugkeer, opnieuw openen en ingevulde offertegegevens werken met animaties aan; minder beweging schakelt verplaatsing uit |
+| Zonder JavaScript | Alle veertien menukaarten en koppen blijven zichtbaar; verschijnanimaties verbergen de serverinhoud niet |
 | Lokale preview | Bijgewerkte pagina's op poort 3000 succesvol geladen voor de visuele controle |
 | `git diff --check` | Geen whitespacefouten; alleen Git-meldingen over LF/CRLF |
 
@@ -28,6 +30,8 @@ De gecontroleerde publieke routes zijn `/`, `/menu`, `/over-ons`, `/b2b`, `/offe
 ## Gecontroleerd gedrag
 
 - Navigatie: Home, Menu, Over ons, B2B en Offerte aanvragen; mobiel menu werkt met toetsenbord en Escape.
+- Mobiele animatie: de navigatie opent en sluit in 260 ms; tijdens sluiten zijn de links direct inert en buiten de toegankelijkheidsboom. De menuhoogte sluit volledig. Met minder beweging is de overgang direct.
+- Verschijnanimaties duren 550 ms en spelen één keer wanneer inhoud in beeld komt. Kaarten volgen met een kleine vertraging. Hoverbeweging geldt alleen voor een fijne aanwijzer; geen doorlopende decoratieve animaties. Focus en tekst blijven zichtbaar.
 - Vormgeving: introducties stapelen op tablet bij 860 px, menukaarten gaan van drie naar twee naar één kolom. Offerte- en privacykoppen lijnen uit met hun inhoud. De mobiele footer en offerteacties breken leesbaar om.
 - Categorienavigatie: links boven het menu worden afgeleid uit de gepubliceerde categorieën en springen naar de bestaande koppen, met ruimte voor de vaste header.
 - Menu: Hoofdgerechten, Biryani Gerechten, Bijgerechten en Nagerechten, in die volgorde. Iedere categorie toont haar bewerkbare `description` onder de kop; een lege tekst wordt weggelaten. Elke productkaart heeft foto, naam met labels en beschrijving; de gemeten verhoudingen zijn 60%, 20% en 20%. De kaart kan groeien om langere inhoud te tonen.

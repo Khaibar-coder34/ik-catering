@@ -426,3 +426,103 @@ test("toegankelijkheidscontrole mobiele offerte stap 2 met validatiefouten", asy
   await expect(form.getByRole("alert")).toBeVisible();
   await checkAccessibility(page);
 });
+
+test("animaties behouden mobiele bediening en ingevulde offertegegevens", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.setViewportSize({ width: 390, height: 844 });
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  await page.goto("/");
+  const toggle = page.locator(".menu-toggle");
+  await toggle.click();
+  await expect(toggle).toHaveAttribute("aria-expanded", "true");
+  await page.locator("#mobile-navigation").getByRole("link", { name: "Menu", exact: true }).focus();
+  await page.keyboard.press("Escape");
+  await expect(toggle).toBeFocused();
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
+  await expect(page.locator(".mobile-nav-panel")).toHaveAttribute("inert", "");
+  await toggle.click();
+  await expect(page.locator("#mobile-navigation").getByRole("link", { name: "Menu", exact: true })).toBeVisible();
+  await page.locator(".header-cta").click();
+  const form = await nextStep(page);
+  await form.getByLabel(formCopy.fields.name).fill("Bewaarde invoer");
+  await form.getByRole("button", { name: formCopy.back, exact: true }).click();
+  await nextStep(page);
+  await expect(form.getByLabel(formCopy.fields.name)).toHaveValue("Bewaarde invoer");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect.poll(() => page.locator(".quote-step:not([hidden])").evaluate((element) => parseFloat(getComputedStyle(element).animationDuration))).toBeLessThan(0.001);
+  expect(errors).toEqual([]);
+});
+
+test("menu-inhoud blijft zichtbaar zonder JavaScript voor animaties", async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+  try {
+    const page = await context.newPage();
+    await page.goto("http://localhost:3100/menu");
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+    await expect(page.locator(".product-card")).toHaveCount(expectedDishes.length);
+    for (const card of await page.locator(".product-card").all()) {
+      await expect(card.getByRole("heading", { level: 3 })).toBeVisible();
+      await expect(card).toHaveCSS("opacity", "1");
+    }
+  } finally {
+    await context.close();
+  }
+});
+
+test("categoriebalk volgt de leespositie en blijft boven de gerechten bereikbaar", async ({ page }) => {
+  for (const width of [320, 390, 1280]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/menu");
+    const navigation = page.getByRole("navigation", { name: menuCopy.categoryNavigationLabel });
+    const target = expectedCatalog.categories.at(-1)!;
+    const link = navigation.getByRole("link", { name: target.name, exact: true });
+    await link.click();
+    await expect(link).toHaveAttribute("aria-current", "location");
+    await expect(link).toBeInViewport();
+    const geometry = await page.evaluate((id) => ({
+      navigationBottom: document.querySelector(".menu-category-nav")!.getBoundingClientRect().bottom,
+      headingTop: document.getElementById(`menu-${id}`)!.getBoundingClientRect().top,
+    }), target.id);
+    expect(geometry.headingTop).toBeGreaterThan(geometry.navigationBottom);
+    await page.locator(`#menu-${expectedCatalog.categories[0].id}`).evaluate((heading) => heading.scrollIntoView({ block: "start" }));
+    await expect(navigation.getByRole("link", { name: categories[0], exact: true })).toHaveAttribute("aria-current", "location");
+  }
+});
+
+test("mobiel menu verschuift de pagina niet en sluit bij buitenklik en desktopweergave", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  const hero = page.locator(".home-hero");
+  const before = await hero.boundingBox();
+  const toggle = page.locator(".menu-toggle");
+  await toggle.click();
+  const after = await hero.boundingBox();
+  expect(after!.y).toBe(before!.y);
+  await page.locator(".hero-photo").click();
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
+  await toggle.click();
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await expect(page.locator(".mobile-nav-panel")).toBeHidden();
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
+});
+
+test("volgende blijft bij een lange gerechtselectie bereikbaar op desktop en mobiel", async ({ page }) => {
+  for (const width of [320, 390, 1280]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/offerte");
+    const next = page.getByRole("button", { name: formCopy.next, exact: true });
+    await expect(next).toBeInViewport();
+    const lastChoice = dishChoice(page, expectedDishes.at(-1)!);
+    await lastChoice.check();
+    await expect(lastChoice).toBeChecked();
+    await expect(next).toBeInViewport();
+    const form = await nextStep(page);
+    await form.getByLabel(formCopy.fields.name).fill("Ongewijzigde invoer");
+    await form.getByRole("button", { name: formCopy.back, exact: true }).click();
+    await expect(lastChoice).toBeChecked();
+    await nextStep(page);
+    await expect(form.getByLabel(formCopy.fields.name)).toHaveValue("Ongewijzigde invoer");
+  }
+});
